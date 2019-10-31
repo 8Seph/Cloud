@@ -11,9 +11,9 @@ public class MainClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main.xml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent root = fxmlLoader.load();
-        primaryStage.setTitle("Box");
+        primaryStage.setTitle("Box Client");
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

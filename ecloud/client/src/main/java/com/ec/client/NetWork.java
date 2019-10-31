@@ -1,12 +1,13 @@
 package com.ec.client;
 
+import com.ec.common.AbstractMessage;
 import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
 import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
 
 import java.io.IOException;
 import java.net.Socket;
 
-public class NetWork {
+public class Network {
     private static Socket socket;
     private static ObjectEncoderOutputStream out;
     private static ObjectDecoderInputStream in;
@@ -54,4 +55,4 @@ public class NetWork {
         return (AbstractMessage) obj;
     }
 }
-}
+
