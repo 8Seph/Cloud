@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ff76379-9a06-4696-8604-75d5f026abcc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/NetWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/NetWork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/classes/com/ec/client/MainClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/classes/com/ec/client/MainClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/classes/com/ec/client/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/classes/com/ec/client/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/classes/com/ec/client/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/classes/com/ec/client/Network.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/classes/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/classes/main.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/com/ec/common/FileMessage.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/com/ec/common/FileMessage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/classes/com/ec/common/FileRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/common/target/classes/com/ec/common/FileRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/ec/server/MainHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/ec/server/MainHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/ec/server/Server$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/ec/server/Server$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/com/ec/server/Server.class" beforeDir="false" afterPath="$PROJECT_DIR$/server/target/classes/com/ec/server/Server.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/server/1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/server/2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/server/3.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/server/Ключи РигаМолл.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/server/Тарифы.xlsx" beforeDir="false" />
     </list>
     <list id="50ed41b5-527d-4877-9343-46c8b59a43c3" name="connect" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -57,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+            <state relative-caret-position="714">
+              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -131,10 +112,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="306">
               <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -466,7 +447,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.MainClient">
     <configuration name="MainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -516,16 +497,15 @@
       <workItem from="1572529347170" duration="6235000" />
       <workItem from="1572539398027" duration="13381000" />
       <workItem from="1572607948927" duration="32288000" />
-      <workItem from="1572688866650" duration="7309000" />
+      <workItem from="1572688866650" duration="7835000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59213000" />
+    <option name="totallyTimeSpent" value="59739000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20948827" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -630,16 +610,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -702,8 +672,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1173">
-          <caret line="69" lean-forward="true" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="714">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
