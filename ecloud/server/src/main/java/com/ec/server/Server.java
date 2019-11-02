@@ -11,24 +11,29 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 
 public class Server {
     public void run() throws Exception {
+        // Пул потоков для обработки подключений клиентов
         EventLoopGroup mainGroup = new NioEventLoopGroup();
+        // Пул потоков для обработки сетевых сообщений
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
+            // Создание настроек сервера
             ServerBootstrap b = new ServerBootstrap();
-            b.group(mainGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
-                        protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(
-                                    new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
-                                    new ObjectEncoder(),
-                                    (ChannelHandler) new MainHandler()
-                            );
-                        }
-                    })
+            b.group(mainGroup, workerGroup); // указание пулов потоков для работы сервера
+            b.channel(NioServerSocketChannel.class); // указание канала для подключения новых клиентов
+            b.childHandler(new ChannelInitializer<SocketChannel>() { // инициализация каналов, 3 - см конвеер
+
+                @Override
+                protected void initChannel(SocketChannel socketChannel) throws Exception { //настройка конвеера для каждого подключившегося клиента
+                    socketChannel.pipeline().addLast(
+                            new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                            new ObjectEncoder(), //вместо сериализации, используем стандартный декодер и энкодер
+                            (ChannelHandler) new MainHandler() // на этом этапе посылка летит к клиенту
+                    );
+                }
+            })
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
-            ChannelFuture future = b.bind(8189).sync();
-            future.channel().closeFuture().sync();
+            ChannelFuture future = b.bind(8189).sync(); // запуск прослушивания порта 8189 для подключения клиентов
+            future.channel().closeFuture().sync(); // ожидание завершения работы сервера
         } finally {
             mainGroup.shutdownGracefully();
             workerGroup.shutdownGracefully();

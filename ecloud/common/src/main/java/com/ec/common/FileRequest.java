@@ -1,6 +1,7 @@
 package com.ec.common;
 
 public class FileRequest extends AbstractMessage {
+    //запрос
     private String filename;
 
     public String getFilename() {

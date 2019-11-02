@@ -11,15 +11,17 @@ public class Network {
     private static Socket socket;
     private static ObjectEncoderOutputStream out;
     private static ObjectDecoderInputStream in;
+    protected static String IP_ADDRESS = "localhost";
 
     public static void start() {
         try {
-            socket = new Socket("localhost", 8189);
+            socket = new Socket(IP_ADDRESS, 8189);
             out = new ObjectEncoderOutputStream(socket.getOutputStream());
             in = new ObjectDecoderInputStream(socket.getInputStream(), 50 * 1024 * 1024);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public static void stop() {
@@ -40,6 +42,7 @@ public class Network {
         }
     }
 
+    // Метод для отправки сообщений на сервер
     public static boolean sendMsg(AbstractMessage msg) {
         try {
             out.writeObject(msg);
@@ -47,9 +50,11 @@ public class Network {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("Сообщение на сервер не отправлено!");
         return false;
     }
 
+    // Метод для получения обьектов и команд. Это операция блокирующая! Java IO
     public static AbstractMessage readObject() throws ClassNotFoundException, IOException {
         Object obj = in.readObject();
         return (AbstractMessage) obj;

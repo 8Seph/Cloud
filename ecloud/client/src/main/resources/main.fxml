@@ -1,15 +1,184 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox fx:id="rootNode" alignment="CENTER" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: linear-gradient(#fff 0%, #eee 10%, #ddd 90%, #bbb 100%);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.172-ea" fx:controller="com.ec.client.MainController">
-    <HBox>
-        <TextField fx:id="tfFileName" focusTraversable="false" promptText="Укажите имя файла на сервере, который хотите скачать" HBox.hgrow="ALWAYS" />
-        <Button onAction="#pressOnDownloadBtn" text="Скачать" />
-    </HBox>
-    <ListView fx:id="filesList" VBox.vgrow="ALWAYS" />
+<VBox fx:id="rootNode" minWidth="-Infinity" prefWidth="550.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ec.client.MainController">
+   <MenuBar>
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" onAction="#delete" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <HBox style="-fx-background-color: #e0e0e0;">
+      <children>
+       <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#getFilesListOnServer" style="-fx-background-radius: 25; -fx-background-color: #46b1d8;" text="Ref" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" underline="true">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+               <Reflection bottomOpacity="0.52" fraction="0.08" topOpacity="0.02" />
+            </effect>
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Button>
+         <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#delete" style="-fx-background-radius: 25; -fx-background-color: #d8466c;" text="Del" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" underline="true">
+            <font>
+               <Font name="System Bold" size="12.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <effect>
+               <Reflection bottomOpacity="0.52" fraction="0.08" topOpacity="0.02" />
+            </effect>
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Button>
+         <HBox alignment="TOP_RIGHT" HBox.hgrow="ALWAYS">
+            <children>
+               <Label text="Connection:">
+                  <HBox.margin>
+                     <Insets top="5.0" />
+                  </HBox.margin>
+               </Label>
+               <Label fx:id="isOnline" text="status">
+                  <HBox.margin>
+                     <Insets left="5.0" right="10.0" top="5.0" />
+                  </HBox.margin>
+               </Label>
+               <TextField fx:id="IP_ADDRESS" focusTraversable="false" prefHeight="25.0" prefWidth="89.0" promptText="IP_ADDRESS" text="localhost" />
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" maxWidth="25.0" minHeight="25.0" minWidth="40.0" mnemonicParsing="false" onAction="#reconnect" style="-fx-background-radius: 25; -fx-background-color: #6f46d8;" text="Con" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP" underline="true">
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <effect>
+                     <Reflection bottomOpacity="0.52" fraction="0.08" topOpacity="0.02" />
+                  </effect>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               </Button>
+            </children>
+         </HBox>
+      </children>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </HBox>
+   <SplitPane dividerPositions="0.5" style="-fx-border-color: none; -fx-background-color: none;" VBox.vgrow="ALWAYS">
+      <items>
+         <VBox alignment="TOP_CENTER">
+            <children>
+               <Label contentDisplay="TOP" text="Client" textAlignment="CENTER" textFill="#868686">
+                  <font>
+                     <Font name="Ebrima Bold" size="12.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </VBox.margin></Label>
+                <ListView fx:id="filesList_CLIENT" style="-fx-background-radius: 0; -fx-border-radius: 0;" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets right="5.0" />
+                  </VBox.margin>
+               </ListView>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Button alignment="TOP_CENTER" contentDisplay="RIGHT" focusTraversable="false" minWidth="100.0" mnemonicParsing="false" onAction="#sendFileBtn" style="-fx-background-color: #27be75; -fx-background-radius: 25;" text="Send" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="CLOSED_HAND" />
+                        </cursor></Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+         <VBox alignment="TOP_CENTER">
+            <children>
+               <Label contentDisplay="TOP" text="Mega Cloud" textAlignment="CENTER" textFill="#868686">
+                  <font>
+                     <Font name="Ebrima Bold" size="12.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </VBox.margin></Label>
+               <ListView fx:id="filesList_SERVER" style="-fx-background-radius: 0; -fx-border-radius: 0;" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets left="5.0" />
+                  </VBox.margin>
+               </ListView>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                       <Button alignment="TOP_CENTER" contentDisplay="RIGHT" focusTraversable="false" minWidth="100.0" onAction="#downloadBtn" style="-fx-background-color: #27be75; -fx-background-radius: 25;" text="Download" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+      </items>
+      <VBox.margin>
+         <Insets left="5.0" right="5.0" />
+      </VBox.margin>
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+   </SplitPane>
+   <HBox alignment="TOP_RIGHT" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" style="-fx-background-color: #e0e0e0;" VBox.vgrow="NEVER">
+      <children>
+         <Label text="by Evegny Emelyanov" textFill="#979797">
+            <padding>
+               <Insets right="10.0" top="2.0" />
+            </padding>
+            <font>
+               <Font name="Ebrima Bold" size="10.0" />
+            </font>
+         </Label>
+      </children>
+   </HBox>
 </VBox>
