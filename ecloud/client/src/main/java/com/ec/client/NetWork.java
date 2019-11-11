@@ -13,7 +13,7 @@ public class Network {
     private static ObjectDecoderInputStream in;
     protected static String IP_ADDRESS = "localhost";
 
-    public static void start() {
+    protected static void start() {
         try {
             socket = new Socket(IP_ADDRESS, 8189);
             out = new ObjectEncoderOutputStream(socket.getOutputStream());
@@ -24,7 +24,7 @@ public class Network {
 
     }
 
-    public static void stop() {
+    protected static void stop() {
         try {
             out.close();
         } catch (IOException e) {
@@ -42,8 +42,8 @@ public class Network {
         }
     }
 
-    // Метод для отправки сообщений на сервер
-    public static boolean sendMsg(AbstractMessage msg) {
+
+    protected static boolean sendMsg(AbstractMessage msg) {
         try {
             out.writeObject(msg);
             return true;
@@ -55,9 +55,10 @@ public class Network {
     }
 
     // Метод для получения обьектов и команд. Это операция блокирующая! Java IO
-    public static AbstractMessage readObject() throws ClassNotFoundException, IOException {
+    protected static AbstractMessage readObject() throws ClassNotFoundException, IOException {
         Object obj = in.readObject();
         return (AbstractMessage) obj;
     }
+
 }
 

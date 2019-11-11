@@ -8,7 +8,7 @@ import java.util.List;
 public class FileMessage extends AbstractMessage {
 
     private String filename;
-    private byte[] data; // файл
+    private byte[] data;
     private List<String> fileList;
 
     public String getFilename() {
@@ -24,12 +24,12 @@ public class FileMessage extends AbstractMessage {
     }
 
     public FileMessage(Path path) throws IOException {
-        filename = path.getFileName().toString(); //передаем путь, затем получаем имя файла
-        data = Files.readAllBytes(path); //считываем все байты и записываем data для отправки
+        filename = path.getFileName().toString();
+        data = Files.readAllBytes(path);
     }
 
     public FileMessage(List<String> filesListOnServer) {
-        this.filename = "/getFilesList";
+        this.filename = "/filesList";
         this.fileList = filesListOnServer;
     }
 }

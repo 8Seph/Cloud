@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
@@ -38,12 +39,15 @@ public class MainController implements Initializable {
     TextField IP_ADDRESS;
 
     @FXML
-    Label isOnline;
+    Label isOnline; //Временное решение
 
+    @FXML
+    private TextArea logArea; //Временный вариант, сюда будут передаваться логи с Log4j
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Настройка индекса для списка файлов на сервере
+
+        // Настройка модели выборки для списксов файлов в интефейсе, код повторяется, но в один метод не получилось пока убрать
         filesList_SERVER.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -51,7 +55,6 @@ public class MainController implements Initializable {
             }
         });
 
-        // Настройка индексов для списка файлов на клиенте,
         filesList_CLIENT.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -63,7 +66,6 @@ public class MainController implements Initializable {
 
     public void connect() {
         Network.start();
-        //если делаем в потоке JavaFX, то интерфейс не прогрузится, отдельный поток для прослушивания сообщений с сервера.
         Thread t = new Thread(() -> {
             try {
                 getFilesListOnServer();
@@ -73,18 +75,16 @@ public class MainController implements Initializable {
                 });
 
                 while (true) {
-                    AbstractMessage am = Network.readObject(); //  in внутри
+                    AbstractMessage am = Network.readObject(); // in внутри
 
-                    // если к нам прилетает фаил
+                    // если прилетает фаил
                     if (am instanceof FileMessage) {
                         FileMessage fm = (FileMessage) am;
 
-                        //если приходит служебный фаил
-                        if (fm.getFilename().startsWith("/") && fm.getFileList() != null) {
+                        if (fm.getFilename().startsWith("/filesList") && fm.getFileList() != null) {
                             refreshServerFilesList(fm);
 
                         } else {
-                            // читаем и сохраняем фаил на клиент, затем обновляем файловый лист в интерфейсе
                             Files.write(Paths.get(FILES_PATH + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
                             refreshLocalFilesList();
                         }
@@ -93,12 +93,13 @@ public class MainController implements Initializable {
                     // если прилетает команда
                     if (am instanceof FileRequest) {
                         FileRequest fm = (FileRequest) am;
-                        System.out.println("Команда от сервера получена");
+                        logArea.appendText("Команда от сервера получена.\n");
                     }
                 }
             } catch (ClassNotFoundException | IOException e) {
                 updateUI(() -> {
                     isOnline.setText("false");
+                    logArea.appendText("Соединение разорвано.\n");
                     filesList_SERVER.getItems().clear();
                 });
                 e.printStackTrace();
@@ -113,13 +114,14 @@ public class MainController implements Initializable {
 
     @FXML
     public void reconnect() {
-        connect();
+
+        //Рефактор
         Network.IP_ADDRESS = IP_ADDRESS.getText();
+        connect();
     }
 
     @FXML
     public void delete() {
-
         if (filesList_CLIENT.isFocused() && selectedIndex_CLIENT != -1) {
             String fileName = filesList_CLIENT.getItems().get(selectedIndex_CLIENT);
             try {
@@ -129,9 +131,7 @@ public class MainController implements Initializable {
             }
             refreshLocalFilesList();
         }
-
         if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
-
             FileRequest fm = new FileRequest("/delete " + filesList_SERVER.getItems().get(selectedIndex_SERVER));
             Network.sendMsg(fm);
         }

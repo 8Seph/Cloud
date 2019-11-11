@@ -24,20 +24,16 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
             // Обработка запросов
             if (msg instanceof FileRequest) {
                 FileRequest fr = (FileRequest) msg;
-
-                // Команды для работы с файлами\списком
                 if (fr.getFilename().startsWith("/")) {
                     if (fr.getFilename().contains("/getFilesList")) sendFilesListToClient(ctx);
                     if (fr.getFilename().contains("/delete")) delete(ctx, fr.getFilename());
                 } else {
-                    // Запрос на отправку файла клиенту
                     sendFileToClient(ctx, fr);
                 }
             }
 
             // Обработка файлов
             if (msg instanceof FileMessage) {
-                //что делать если прилетел фаил?
                 FileMessage fm = (FileMessage) msg;
                 Files.write(Paths.get(FILES_PATH + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
                 sendFilesListToClient(ctx);
@@ -60,10 +56,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     }
 
     private void sendFileToClient(ChannelHandlerContext ctx, FileRequest fileRequest) throws IOException {
-        // Проверяем файл на существование в каталоге на сервер
         if (Files.exists(Paths.get(FILES_PATH + fileRequest.getFilename()))) {
             FileMessage fm = new FileMessage(Paths.get(FILES_PATH + fileRequest.getFilename()));
-            //отправляет посылку далее по конвееру, в обратную сторону (клиенту)
             ctx.writeAndFlush(fm);
         }
     }
