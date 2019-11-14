@@ -27,7 +27,7 @@ public class Server {
                     socketChannel.pipeline().addLast(
                             new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
                             new ObjectEncoder(), //вместо сериализации, используем стандартный декодер и энкодер
-                            (ChannelHandler) new MainHandler() // на этом этапе посылка летит к клиенту
+                            new MainHandler() // на этом этапе посылка летит к клиенту
                     );
                 }
             })

@@ -15,7 +15,7 @@ import java.util.List;
 
 public class MainHandler extends ChannelInboundHandlerAdapter {
 
-    private final String FILES_PATH = "storage/server/";
+    private final String FILES_PATH = "D:/storage/";
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

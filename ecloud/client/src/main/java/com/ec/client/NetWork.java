@@ -21,7 +21,6 @@ public class Network {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     protected static void stop() {
@@ -59,6 +58,5 @@ public class Network {
         Object obj = in.readObject();
         return (AbstractMessage) obj;
     }
-
 }
 

@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ResourceBundle;
@@ -39,10 +40,10 @@ public class MainController implements Initializable {
     TextField IP_ADDRESS;
 
     @FXML
-    Label isOnline; //Временное решение
+    Label isOnline;
 
     @FXML
-    private TextArea logArea; //Временный вариант, сюда будут передаваться логи с Log4j
+    private TextArea logArea;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -61,6 +62,16 @@ public class MainController implements Initializable {
                 selectedIndex_CLIENT = newValue.intValue();
             }
         });
+
+
+        if (!Files.exists(Paths.get(FILES_PATH))) {
+            try {
+                Files.createDirectories(Paths.get(FILES_PATH));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         connect();
     }
 
