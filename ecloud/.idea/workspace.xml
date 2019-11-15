@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ff76379-9a06-4696-8604-75d5f026abcc" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MsgHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FilesList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/handlers/in1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/client/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/NetWork.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/NetWork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/e-Cloud-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/e-Cloud-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/e-Cloud.jar" beforeDir="false" afterPath="$PROJECT_DIR$/client/target/e-Cloud.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/resources/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/resources/main.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/client/123 - Copy (7).txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/server/123 - Copy (10).txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/storage/server/123 - Copy (7).txt" beforeDir="false" />
     </list>
     <list id="50ed41b5-527d-4877-9343-46c8b59a43c3" name="connect" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -52,10 +52,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+            <state relative-caret-position="238">
+              <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#664#665#0" expanded="true" />
+                <element signature="e#692#693#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -64,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            <state relative-caret-position="68">
+              <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
               <folding>
                 <element signature="e#150#151#0" expanded="true" />
                 <element signature="e#181#182#0" expanded="true" />
@@ -77,10 +79,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FilesList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2295">
-              <caret line="161" column="33" selection-start-line="161" selection-start-column="33" selection-end-line="161" selection-end-column="33" />
+            <state relative-caret-position="102">
+              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server2.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,18 +112,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="184">
+              <caret line="87" column="58" lean-forward="true" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#305#306#0" expanded="true" />
-                <element signature="e#336#337#0" expanded="true" />
-                <element signature="e#367#368#0" expanded="true" />
-                <element signature="e#394#395#0" expanded="true" />
-                <element signature="e#435#436#0" expanded="true" />
-                <element signature="e#466#467#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,22 +133,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MsgHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            <state relative-caret-position="-34">
+              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -140,10 +145,26 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java">
+        <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+            <state relative-caret-position="323">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#305#306#0" expanded="true" />
+                <element signature="e#336#337#0" expanded="true" />
+                <element signature="e#367#368#0" expanded="true" />
+                <element signature="e#394#395#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="806">
+              <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,6 +184,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>myap</find>
+      <find>getFilesListOnServer</find>
+      <find>readO</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,18 +198,23 @@
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/Controller.java" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/ec/common/AbstractMessage.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/NetWork.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java" />
-        <option value="$PROJECT_DIR$/client/src/main/resources/main.fxml" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java" />
-        <option value="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java" />
         <option value="$PROJECT_DIR$/common/pom.xml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/server/pom.xml" />
         <option value="$PROJECT_DIR$/client/pom.xml" />
-        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Handlers/in1.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server2.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/handlers/in1.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/ec/common/FilesList.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java" />
+        <option value="$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java" />
+        <option value="$PROJECT_DIR$/client/src/main/resources/main.fxml" />
+        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MsgHandler.java" />
       </list>
     </option>
   </component>
@@ -222,11 +250,11 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="533" />
-    <option name="y" value="20" />
-    <option name="width" value="1459" />
-    <option name="height" value="995" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="150" />
+    <option name="y" value="404" />
+    <option name="width" value="1529" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -411,6 +439,89 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="server" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="jfxrt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="javafx" type="462c0819:PsiDirectoryNode" />
+              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.42.Final.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.42.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.42.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="channel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.42.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.42.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+              <item name="codec" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ecloud" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: io.netty:netty-all:4.1.42.Final" type="70bed36:NamedLibraryElementNode" />
+              <item name="netty-all-4.1.42.Final.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="netty" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+              <item name="codec" type="462c0819:PsiDirectoryNode" />
+              <item name="serialization" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -425,7 +536,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Learning java/JavaRushTasks" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Learning java/Учебные проекты/geek-box/geek-box" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -433,11 +544,14 @@
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Seph\OneDrive\Java projects\Cloud\ecloud\storage" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Seph\OneDrive\Java projects\Cloud\ecloud\client\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.ec.server" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Seph\OneDrive\Java projects\Cloud\ecloud\storage" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -514,18 +628,17 @@
       <workItem from="1573467244066" duration="10807000" />
       <workItem from="1573498547652" duration="642000" />
       <workItem from="1573555040388" duration="7129000" />
-      <workItem from="1573732580797" duration="1815000" />
+      <workItem from="1573732580797" duration="14165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="113760000" />
+    <option name="totallyTimeSpent" value="126110000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="600" y="19" width="1459" height="995" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49856323" visible="true" weight="0.16297355" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49856323" visible="true" weight="0.25053304" />
       <window_info id="Structure" order="1" sideWeight="0.50143677" side_tool="true" weight="0.24093817" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -535,7 +648,7 @@
       <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.20069605" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3215434" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978564" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -652,14 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/resources/main.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3485">
-          <caret line="205" column="15" selection-start-line="205" selection-start-column="15" selection-end-line="205" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -667,51 +772,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.42.Final/netty-all-4.1.42.Final-sources.jar!/io/netty/handler/codec/serialization/ObjectDecoder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="23" column="12" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
+        <state relative-caret-position="375">
+          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+          <folding>
+            <element signature="e#1829#1830#0" expanded="true" />
+            <element signature="e#1873#1874#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/netty/netty-all/4.1.42.Final/netty-all-4.1.42.Final-sources.jar!/io/netty/channel/ChannelInboundHandlerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="90" column="4" lean-forward="true" selection-start-line="90" selection-start-column="4" selection-end-line="93" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/handlers/in1.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java">
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        <state relative-caret-position="528">
+          <caret line="56" column="5" lean-forward="true" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
           <folding>
-            <element signature="e#150#151#0" expanded="true" />
-            <element signature="e#181#182#0" expanded="true" />
-            <element signature="e#224#225#0" expanded="true" />
-            <element signature="e#264#265#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/resources/main.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1087">
+          <caret line="119" column="50" lean-forward="true" selection-start-line="119" selection-start-column="50" selection-end-line="119" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_212/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="2596" selection-start-line="2596" selection-end-line="2596" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#664#665#0" expanded="true" />
+            <element signature="e#692#693#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="806">
+          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MsgHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2295">
-          <caret line="161" column="33" selection-start-line="161" selection-start-column="33" selection-end-line="161" selection-end-column="33" />
+        <state relative-caret-position="184">
+          <caret line="87" column="58" lean-forward="true" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#305#306#0" expanded="true" />
-            <element signature="e#336#337#0" expanded="true" />
-            <element signature="e#367#368#0" expanded="true" />
-            <element signature="e#394#395#0" expanded="true" />
-            <element signature="e#435#436#0" expanded="true" />
-            <element signature="e#466#467#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,20 +874,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileMessage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+        <state relative-caret-position="323">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#305#306#0" expanded="true" />
+            <element signature="e#336#337#0" expanded="true" />
+            <element signature="e#367#368#0" expanded="true" />
+            <element signature="e#394#395#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/MainHandler.java">
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FileRequest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="28" selection-start-line="4" selection-start-column="28" selection-end-line="4" selection-end-column="28" />
+          <folding>
+            <element signature="e#150#151#0" expanded="true" />
+            <element signature="e#181#182#0" expanded="true" />
+            <element signature="e#224#225#0" expanded="true" />
+            <element signature="e#264#265#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/ec/common/FilesList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -745,11 +913,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        <state relative-caret-position="170">
+          <caret line="16" column="27" lean-forward="true" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server2.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
         </state>
       </provider>
     </entry>

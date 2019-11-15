@@ -2,6 +2,7 @@ package com.ec.server;
 
 import com.ec.common.FileMessage;
 import com.ec.common.FileRequest;
+import com.ec.common.FilesList;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.ReferenceCountUtil;
@@ -51,8 +52,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     private void sendFilesListToClient(ChannelHandlerContext ctx) throws IOException {
         List<String> filesList_SERVER = new LinkedList<>();
         Files.list(Paths.get(FILES_PATH)).map(p -> p.getFileName().toString()).forEach(o -> filesList_SERVER.add(o));
-        FileMessage fileMessage = new FileMessage(filesList_SERVER);
-        ctx.writeAndFlush(fileMessage);
+        FilesList filesList = new FilesList(filesList_SERVER);
+        ctx.writeAndFlush(filesList);
     }
 
     private void sendFileToClient(ChannelHandlerContext ctx, FileRequest fileRequest) throws IOException {

@@ -1,7 +1,10 @@
 package com.ec.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -9,7 +12,7 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
-public class Server {
+public class Server2 {
     public void run() throws Exception {
         // Пул потоков для обработки подключений клиентов
         EventLoopGroup mainGroup = new NioEventLoopGroup();
@@ -25,12 +28,17 @@ public class Server {
                 @Override
                 protected void initChannel(SocketChannel socketChannel) throws Exception { //настройка конвеера для каждого подключившегося клиента
                     socketChannel.pipeline().addLast(
-                            new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)), //100 mb
-                            new ObjectEncoder(), //вместо сериализации, используем стандартный декодер и энкодер
-                            new MainHandler() // на этом этапе посылка летит к клиенту
 
-                            //ctx - метка канала с которым работаем.
-                            //Сообщения в первый хендлер всегда прилетают в байтбуффуере
+
+
+
+
+
+
+
+
+
+
                     );
                 }
             })
@@ -44,6 +52,6 @@ public class Server {
     }
 
     public static void main(String[] args) throws Exception {
-        new Server().run();
+        new Server2().run();
     }
 }

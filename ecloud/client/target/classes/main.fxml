@@ -112,7 +112,7 @@
                   </HBox.margin>
                </Label>
                <PasswordField focusTraversable="false" prefHeight="25.0" prefWidth="110.0" />
-               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#reconnect" text="Connect" textAlignment="CENTER" textOverrun="CLIP">
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#connectBtn" text="Connect" textAlignment="CENTER" textOverrun="CLIP">
                   <font>
                      <Font name="System Bold" size="11.0" />
                   </font>

@@ -4,6 +4,7 @@ package com.ec.client;
 import com.ec.common.AbstractMessage;
 import com.ec.common.FileMessage;
 import com.ec.common.FileRequest;
+import com.ec.common.FilesList;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,25 +26,26 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    private final String FILES_PATH = "storage/client/";
+    protected final String FILES_PATH = "storage/client/";
     private int selectedIndex_SERVER = -1;
     private int selectedIndex_CLIENT = -1;
     private boolean isConnected = false;
+    MsgHandler msgHandler = new MsgHandler(this);
 
     @FXML
-    ListView<String> filesList_CLIENT;
+    private ListView<String> filesList_CLIENT;
 
     @FXML
-    ListView<String> filesList_SERVER;
+    private ListView<String> filesList_SERVER;
 
     @FXML
-    TextField IP_ADDRESS;
+    private TextField IP_ADDRESS;
 
     @FXML
-    Label isOnline;
+    private Label isOnline;
 
     @FXML
-    private TextArea logArea;
+    protected TextArea logArea;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,7 +65,7 @@ public class MainController implements Initializable {
             }
         });
 
-
+        //Если папки на клиенте не созданы
         if (!Files.exists(Paths.get(FILES_PATH))) {
             try {
                 Files.createDirectories(Paths.get(FILES_PATH));
@@ -72,47 +74,21 @@ public class MainController implements Initializable {
             }
         }
 
-        connect();
     }
 
-    public void connect() {
+    private void connect() {
         Network.start();
         Thread t = new Thread(() -> {
             try {
                 getFilesListOnServer();
-
                 updateUI(() -> {
-                    isOnline.setText("true");
+                    isOnline.setText("online");
                 });
-
                 while (true) {
-                    AbstractMessage am = Network.readObject(); // in внутри
-
-                    // если прилетает фаил
-                    if (am instanceof FileMessage) {
-                        FileMessage fm = (FileMessage) am;
-
-                        if (fm.getFilename().startsWith("/filesList") && fm.getFileList() != null) {
-                            refreshServerFilesList(fm);
-
-                        } else {
-                            Files.write(Paths.get(FILES_PATH + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
-                            refreshLocalFilesList();
-                        }
-                    }
-
-                    // если прилетает команда
-                    if (am instanceof FileRequest) {
-                        FileRequest fm = (FileRequest) am;
-                        logArea.appendText("Команда от сервера получена.\n");
-                    }
+                    AbstractMessage msg_in = Network.readObject();
+                    msgHandler.checkMsg(msg_in);
                 }
             } catch (ClassNotFoundException | IOException e) {
-                updateUI(() -> {
-                    isOnline.setText("false");
-                    logArea.appendText("Соединение разорвано.\n");
-                    filesList_SERVER.getItems().clear();
-                });
                 e.printStackTrace();
             } finally {
                 Network.stop();
@@ -124,9 +100,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void reconnect() {
-
-        //Рефактор
+    public void connectBtn() {
         Network.IP_ADDRESS = IP_ADDRESS.getText();
         connect();
     }
@@ -170,11 +144,11 @@ public class MainController implements Initializable {
         Network.sendMsg(filesList);
     }
 
-    public void refreshServerFilesList(FileMessage fm) {
+    public void refreshServerFilesList(FilesList fm) {
         updateUI(() -> {
             try {
                 filesList_SERVER.getItems().clear();
-                for (String str : fm.getFileList()) {
+                for (String str : fm.getFilesList()) {
                     filesList_SERVER.getItems().add(str);
                 }
             } catch (Exception e) {
