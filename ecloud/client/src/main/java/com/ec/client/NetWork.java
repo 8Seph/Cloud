@@ -1,62 +1,58 @@
 package com.ec.client;
 
-import com.ec.common.AbstractMessage;
-import io.netty.handler.codec.serialization.ObjectDecoderInputStream;
-import io.netty.handler.codec.serialization.ObjectEncoderOutputStream;
-
-import java.io.IOException;
-import java.net.Socket;
+import io.netty.bootstrap.Bootstrap;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class Network {
-    private static Socket socket;
-    private static ObjectEncoderOutputStream out;
-    private static ObjectDecoderInputStream in;
-    protected static String IP_ADDRESS = "localhost";
+    private static Network instance = new Network();
+    private Channel currentChannel;
 
-    protected static void start() {
-        try {
-            socket = new Socket(IP_ADDRESS, 8189);
-            out = new ObjectEncoderOutputStream(socket.getOutputStream());
-            in = new ObjectDecoderInputStream(socket.getInputStream(), 50 * 1024 * 1024);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+    private Network() {
     }
 
-    protected static void stop() {
-        try {
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        try {
-            socket.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public static Network getInstance() {
+        return instance;
     }
 
-
-    protected static boolean sendMsg(AbstractMessage msg) {
-        try {
-            out.writeObject(msg);
-            return true;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Сообщение на сервер не отправлено!");
-        return false;
+    public Channel getCurrentChannel() {
+        return currentChannel;
     }
 
-    // Метод для получения обьектов и команд. Это операция блокирующая! Java IO
-    protected static AbstractMessage readObject() throws ClassNotFoundException, IOException {
-        Object obj = in.readObject();
-        return (AbstractMessage) obj;
+    public void start() {
+        EventLoopGroup group = new NioEventLoopGroup();
+        try {
+            Bootstrap b = new Bootstrap();
+            b.group(group);
+            b.channel(NioSocketChannel.class);
+            //b.option(ChannelOption.SO_KEEPALIVE, true );
+            b.handler(new ChannelInitializer<SocketChannel>() {
+                protected void initChannel(SocketChannel socketChannel) throws Exception {
+                    socketChannel.pipeline().addLast(
+                            new TmpHandler()
+                    );
+                    currentChannel = socketChannel;
+                }
+            });
+
+            ChannelFuture channelFuture = b.connect("localhost", 8189).sync();
+            channelFuture.channel().closeFuture().sync();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                System.out.println("Канал закрылся");
+                group.shutdownGracefully().sync();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void stop() {
+        currentChannel.close();
     }
 }
-

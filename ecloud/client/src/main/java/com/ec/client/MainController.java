@@ -1,10 +1,7 @@
 package com.ec.client;
 
-
-import com.ec.common.AbstractMessage;
-import com.ec.common.FileMessage;
-import com.ec.common.FileRequest;
 import com.ec.common.FilesList;
+import io.netty.channel.ChannelFutureListener;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -19,9 +16,8 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -29,14 +25,12 @@ public class MainController implements Initializable {
     protected final String FILES_PATH = "storage/client/";
     private int selectedIndex_SERVER = -1;
     private int selectedIndex_CLIENT = -1;
-    private boolean isConnected = false;
-    MsgHandler msgHandler = new MsgHandler(this);
+    private Network network = Network.getInstance();
+    private ChannelFutureListener finishListener;
+
 
     @FXML
-    private ListView<String> filesList_CLIENT;
-
-    @FXML
-    private ListView<String> filesList_SERVER;
+    private ListView<String> filesList_CLIENT, filesList_SERVER;
 
     @FXML
     private TextField IP_ADDRESS;
@@ -65,6 +59,16 @@ public class MainController implements Initializable {
             }
         });
 
+        finishListener = future -> {
+            if (!future.isSuccess()) {
+                future.cause().printStackTrace();
+            }
+            if (future.isSuccess()) {
+                System.out.println("Файл успешно передан");
+                Network.getInstance().stop();
+            }
+        };
+
         //Если папки на клиенте не созданы
         if (!Files.exists(Paths.get(FILES_PATH))) {
             try {
@@ -76,33 +80,15 @@ public class MainController implements Initializable {
 
     }
 
-    private void connect() {
-        Network.start();
-        Thread t = new Thread(() -> {
-            try {
-                getFilesListOnServer();
-                updateUI(() -> {
-                    isOnline.setText("online");
-                });
-                while (true) {
-                    AbstractMessage msg_in = Network.readObject();
-                    msgHandler.checkMsg(msg_in);
-                }
-            } catch (ClassNotFoundException | IOException e) {
-                e.printStackTrace();
-            } finally {
-                Network.stop();
-            }
-        });
-        t.setDaemon(true);
-        t.start();
-        refreshLocalFilesList();
+    private void connect() throws InterruptedException {
+        new Thread(() -> network.start()).start();
     }
 
     @FXML
-    public void connectBtn() {
-        Network.IP_ADDRESS = IP_ADDRESS.getText();
+    public void connectBtn() throws InterruptedException {
+        // Network.IP_ADDRESS = IP_ADDRESS.getText();
         connect();
+        refreshLocalFilesList();
     }
 
     @FXML
@@ -116,32 +102,33 @@ public class MainController implements Initializable {
             }
             refreshLocalFilesList();
         }
-        if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
-            FileRequest fm = new FileRequest("/delete " + filesList_SERVER.getItems().get(selectedIndex_SERVER));
-            Network.sendMsg(fm);
-        }
+//        if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
+//            FileRequest fm = new FileRequest("/delete " + filesList_SERVER.getItems().get(selectedIndex_SERVER));
+//            Network.sendMsg(fm);
+//        }
+    }
+
+    @FXML
+    public void search(ActionEvent event) throws IOException {
+        FIleSendler.getServerFilesList(network.getCurrentChannel());
     }
 
 
     @FXML
     public void downloadBtn(ActionEvent actionEvent) {
-        if (selectedIndex_SERVER != -1) {
-            Network.sendMsg(new FileRequest(filesList_SERVER.getItems().get(selectedIndex_SERVER)));
-        }
+//        if (selectedIndex_SERVER != -1) {
+//            Network.sendMsg(new FileRequest(filesList_SERVER.getItems().get(selectedIndex_SERVER)));
+//        }
     }
 
     @FXML
     public void sendFileBtn(ActionEvent event) throws IOException {
-        if (selectedIndex_CLIENT != -1) {
-            FileMessage fm = new FileMessage(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)));
-            Network.sendMsg(fm);
-        }
+        FIleSendler.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
     }
 
 
     public void getFilesListOnServer() {
-        FileRequest filesList = new FileRequest("/getFilesList");
-        Network.sendMsg(filesList);
+
     }
 
     public void refreshServerFilesList(FilesList fm) {
@@ -155,8 +142,6 @@ public class MainController implements Initializable {
                 e.printStackTrace();
             }
         });
-
-        refreshLocalFilesList();
     }
 
     public void refreshLocalFilesList() {

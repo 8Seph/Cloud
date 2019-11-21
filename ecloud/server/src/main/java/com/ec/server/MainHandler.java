@@ -2,6 +2,7 @@ package com.ec.server;
 
 import com.ec.common.FileMessage;
 import com.ec.common.FileRequest;
+import com.ec.common.FileText;
 import com.ec.common.FilesList;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -22,15 +23,18 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
         try {
-            // Обработка запросов
+            // Обработка запросов на получение / удаление файлов
             if (msg instanceof FileRequest) {
                 FileRequest fr = (FileRequest) msg;
                 if (fr.getFilename().startsWith("/")) {
-                    if (fr.getFilename().contains("/getFilesList")) sendFilesListToClient(ctx);
                     if (fr.getFilename().contains("/delete")) delete(ctx, fr.getFilename());
                 } else {
                     sendFileToClient(ctx, fr);
                 }
+            }
+
+            if (msg instanceof FilesList) {
+                sendFilesListToClient(ctx);
             }
 
             // Обработка файлов
@@ -38,6 +42,12 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
                 FileMessage fm = (FileMessage) msg;
                 Files.write(Paths.get(FILES_PATH + fm.getFilename()), fm.getData(), StandardOpenOption.CREATE);
                 sendFilesListToClient(ctx);
+            }
+
+            //tmp text
+            if (msg instanceof FileText) {
+                FileText fileText = (FileText) msg;
+                System.out.println(fileText);
             }
         } finally {
             ReferenceCountUtil.release(msg);
@@ -63,7 +73,7 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
         }
     }
 
-    // ОБЯЗАТЕЛЬНЫЙ ОБРАБОТЧИК ИСКЛЮЧЕНИЙ!
+    // обработка исключений
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         cause.printStackTrace();
