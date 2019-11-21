@@ -7,6 +7,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 public class Network {
+    protected static String IP_ADDRESS;
     private static Network instance = new Network();
     private Channel currentChannel;
 
@@ -37,7 +38,6 @@ public class Network {
                     currentChannel = socketChannel;
                 }
             });
-
             ChannelFuture channelFuture = b.connect("localhost", 8189).sync();
             channelFuture.channel().closeFuture().sync();
 
@@ -45,7 +45,7 @@ public class Network {
             e.printStackTrace();
         } finally {
             try {
-                System.out.println("Канал закрылся");
+                System.out.println("Channel closed");
                 group.shutdownGracefully().sync();
             } catch (InterruptedException e) {
                 e.printStackTrace();

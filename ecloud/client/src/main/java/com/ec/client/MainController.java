@@ -65,7 +65,6 @@ public class MainController implements Initializable {
             }
             if (future.isSuccess()) {
                 System.out.println("Файл успешно передан");
-                Network.getInstance().stop();
             }
         };
 
@@ -86,7 +85,7 @@ public class MainController implements Initializable {
 
     @FXML
     public void connectBtn() throws InterruptedException {
-        // Network.IP_ADDRESS = IP_ADDRESS.getText();
+        Network.IP_ADDRESS = IP_ADDRESS.getText();
         connect();
         refreshLocalFilesList();
     }
