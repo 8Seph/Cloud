@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="rootNode" minWidth="-Infinity" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ec.client.MainController">
+   <MenuBar>
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" onAction="#delete" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+   <HBox style="-fx-background-color: #e0e0e0;">
+      <children>
+         <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#getFilesListOnServer" text="Refresh" textAlignment="CENTER" textOverrun="CLIP">
+            <font>
+               <Font name="System Bold" size="11.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Button>
+         <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="20.0" mnemonicParsing="false" onAction="#delete" text="Delete" textAlignment="CENTER" textOverrun="CLIP">
+            <font>
+               <Font name="System Bold" size="11.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+            <HBox.margin>
+               <Insets right="10.0" />
+            </HBox.margin>
+         </Button>
+         <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="20.0" mnemonicParsing="false" onAction="#search" text="Search" textAlignment="CENTER" textOverrun="CLIP">
+            <font>
+               <Font name="System Bold" size="11.0" />
+            </font>
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
+         </Button>
+      </children>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </HBox>
+   <HBox style="-fx-background-color: #e0e0e0;">
+      <children>
+         <HBox HBox.hgrow="ALWAYS">
+            <children>
+               <Label text="Host:">
+                  <HBox.margin>
+                     <Insets left="5.0" right="5.0" top="3.0" />
+                  </HBox.margin>
+               </Label>
+               <TextField fx:id="IP_ADDRESS" focusTraversable="false" prefHeight="25.0" prefWidth="110.0" promptText="IP_ADDRESS" text="localhost">
+                  <HBox.margin>
+                     <Insets right="10.0" />
+                  </HBox.margin></TextField>
+               <Label text="Login:">
+                  <HBox.margin>
+                     <Insets right="5.0" top="3.0" />
+                  </HBox.margin>
+               </Label>
+               <TextField focusTraversable="false" prefHeight="25.0" prefWidth="110.0" promptText="todo">
+                  <HBox.margin>
+                     <Insets right="10.0" />
+                  </HBox.margin>
+               </TextField>
+               <Label text="Password:">
+                  <HBox.margin>
+                     <Insets right="5.0" top="3.0" />
+                  </HBox.margin>
+               </Label>
+               <PasswordField focusTraversable="false" prefHeight="25.0" prefWidth="110.0" promptText="todo" />
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#connectBtn" text="Connect" textAlignment="CENTER" textOverrun="CLIP">
+                  <font>
+                     <Font name="System Bold" size="11.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+                  <HBox.margin>
+                     <Insets left="10.0" />
+                  </HBox.margin>
+               </Button>
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#disconnectBtn" text="Disconnect" textAlignment="CENTER" textOverrun="CLIP">
+                  <font>
+                     <Font name="System Bold" size="11.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
+            </children>
+         </HBox>
+      </children>
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding>
+   </HBox>
+   <TextArea fx:id="logArea" editable="false" focusTraversable="false" maxHeight="100.0" prefHeight="100.0" VBox.vgrow="ALWAYS">
+      <cursor>
+         <Cursor fx:constant="TEXT" />
+      </cursor>
+   </TextArea>
+   <SplitPane dividerPositions="0.5" style="-fx-border-color: none; -fx-background-color: none;" VBox.vgrow="ALWAYS">
+      <items>
+         <VBox alignment="TOP_CENTER">
+            <children>
+               <Label contentDisplay="TOP" text="Local storage" textAlignment="CENTER" textFill="#868686">
+                  <font>
+                     <Font name="Ebrima Bold" size="12.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </VBox.margin></Label>
+                <ListView fx:id="filesList_CLIENT" style="-fx-background-radius: 0; -fx-border-radius: 0;" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets right="5.0" />
+                  </VBox.margin>
+               </ListView>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                     <Button alignment="TOP_CENTER" contentDisplay="RIGHT" focusTraversable="false" minWidth="100.0" mnemonicParsing="false" onAction="#sendFileBtn" style="-fx-background-color: #27be75; -fx-background-radius: 25;" text="Send" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" left="5.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+         <VBox alignment="TOP_CENTER">
+            <children>
+               <Label contentDisplay="TOP" text="Cloud" textAlignment="CENTER" textFill="#868686">
+                  <font>
+                     <Font name="Ebrima Bold" size="12.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="5.0" top="5.0" />
+                  </VBox.margin></Label>
+               <ListView fx:id="filesList_SERVER" style="-fx-background-radius: 0; -fx-border-radius: 0;" VBox.vgrow="ALWAYS">
+                  <VBox.margin>
+                     <Insets left="5.0" />
+                  </VBox.margin>
+               </ListView>
+               <HBox alignment="TOP_CENTER">
+                  <children>
+                       <Button alignment="TOP_CENTER" contentDisplay="RIGHT" focusTraversable="false" minWidth="100.0" onAction="#downloadBtn" style="-fx-background-color: #27be75; -fx-background-radius: 25;" text="Download" textFill="WHITE">
+                        <font>
+                           <Font name="System Bold" size="12.0" />
+                        </font>
+                        <cursor>
+                           <Cursor fx:constant="HAND" />
+                        </cursor></Button>
+                  </children>
+                  <VBox.margin>
+                     <Insets bottom="5.0" right="5.0" top="5.0" />
+                  </VBox.margin>
+               </HBox>
+            </children>
+         </VBox>
+      </items>
+      <VBox.margin>
+         <Insets left="5.0" right="5.0" />
+      </VBox.margin>
+      <cursor>
+         <Cursor fx:constant="DEFAULT" />
+      </cursor>
+   </SplitPane>
+   <HBox alignment="TOP_RIGHT" maxHeight="20.0" minHeight="20.0" prefHeight="20.0" style="-fx-background-color: #e0e0e0;" VBox.vgrow="NEVER">
+      <children>
+         <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+            <children>
+               <Label text="Connection:">
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Label>
+               <Label fx:id="isOnline" text="status">
+                  <HBox.margin>
+                     <Insets left="5.0" right="10.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font name="System Bold" size="12.0" />
+                  </font>
+               </Label>
+            </children>
+            <HBox.margin>
+               <Insets left="10.0" />
+            </HBox.margin>
+         </HBox>
+         <Label textFill="#979797">
+            <font>
+               <Font name="Ebrima Bold" size="10.0" />
+            </font>
+            <HBox.margin>
+               <Insets right="10.0" top="2.0" />
+            </HBox.margin>
+         </Label>
+      </children>
+   </HBox>
+</VBox>

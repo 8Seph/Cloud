@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8ff76379-9a06-4696-8604-75d5f026abcc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/classes/META-INF/client.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/classes/main.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/e-Cloud-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/e-Cloud.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/eCloud.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/eCloud2.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/target/myapp.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/common-1.0-SNAPSHOT.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/classes/META-INF/server.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/target/server-1.0-SNAPSHOT.jar" beforeDir="false" />
-    </list>
+    <list default="true" id="8ff76379-9a06-4696-8604-75d5f026abcc" name="Default Changelist" comment="" />
     <list id="50ed41b5-527d-4877-9343-46c8b59a43c3" name="connect" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -381,7 +364,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="Application.MainClient">
     <configuration name="MainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -449,16 +432,15 @@
       <workItem from="1574079160526" duration="1216000" />
       <workItem from="1574094512794" duration="724000" />
       <workItem from="1574260413016" duration="634000" />
-      <workItem from="1574415618105" duration="60536000" />
+      <workItem from="1574415618105" duration="60970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="243167000" />
+    <option name="totallyTimeSpent" value="243601000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.89244187" visible="true" weight="0.19616205" />
       <window_info id="Structure" order="1" sideWeight="0.10755814" side_tool="true" weight="0.19616205" />
@@ -470,7 +452,7 @@
       <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.22508039" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22508039" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39978564" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
