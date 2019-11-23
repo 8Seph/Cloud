@@ -23,7 +23,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    protected final String FILES_PATH = "storage/client/";
+    protected final String FILES_PATH = "D:/storage/client/";
     private int selectedIndex_SERVER = -1;
     private int selectedIndex_CLIENT = -1;
     private Network network = Network.getInstance();

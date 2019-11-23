@@ -3,9 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="8ff76379-9a06-4696-8604-75d5f026abcc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/FileHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Requests.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Requests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/StartHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/StartHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/classes/META-INF/client.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/classes/main.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/e-Cloud-jar-with-dependencies.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/e-Cloud.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/eCloud.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/eCloud2.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/target/myapp.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/common-1.0-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/classes/META-INF/server.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/target/server-1.0-SNAPSHOT.jar" beforeDir="false" />
     </list>
     <list id="50ed41b5-527d-4877-9343-46c8b59a43c3" name="connect" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -45,17 +57,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+            <state relative-caret-position="67">
+              <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Requests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="120" column="37" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+            <state relative-caret-position="1887">
+              <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#sendFilesList#0;class#Requests#0" />
@@ -80,8 +92,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Sendler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="31" />
+            <state relative-caret-position="225">
+              <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="132" column="16" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -144,12 +168,12 @@
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/FIleSendler.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/TmpHandler.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java" />
-        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/Sendler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/StartHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/FileHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Requests.java" />
+        <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" />
       </list>
     </option>
   </component>
@@ -162,26 +186,7 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="client" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="client" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="server" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="server" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-      </expand>
+      <expand />
       <select />
     </treeState>
   </component>
@@ -444,12 +449,12 @@
       <workItem from="1574079160526" duration="1216000" />
       <workItem from="1574094512794" duration="724000" />
       <workItem from="1574260413016" duration="634000" />
-      <workItem from="1574415618105" duration="59992000" />
+      <workItem from="1574415618105" duration="60536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="242623000" />
+    <option name="totallyTimeSpent" value="243167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
@@ -477,9 +482,9 @@
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24958813" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24946696" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.34019768" />
+      <window_info anchor="right" id="Maven" order="3" weight="0.3400853" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Database" order="6" weight="0.32969433" />
@@ -855,32 +860,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="111" column="6" selection-start-line="111" selection-start-column="6" selection-end-line="111" selection-end-column="6" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4285#4286#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Sendler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="24" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/StartHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="505">
@@ -904,11 +883,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Requests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="120" column="37" selection-start-line="120" selection-start-column="37" selection-end-line="120" selection-end-column="37" />
+        <state relative-caret-position="1887">
+          <caret line="111" column="54" selection-start-line="111" selection-start-column="54" selection-end-line="111" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#sendFilesList#0;class#Requests#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="67">
+          <caret line="13" column="48" selection-start-line="13" selection-start-column="48" selection-end-line="13" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Sendler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="47" column="36" selection-start-line="47" selection-start-column="36" selection-end-line="47" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="132" column="16" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

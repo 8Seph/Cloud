@@ -11,7 +11,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 
 
 public class Server {
-    public static final String FILES_PATH = "storage/server/";
+    public static final String FILES_PATH = "D:/storage/server/";
 
     public void run() throws Exception {
 
