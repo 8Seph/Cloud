@@ -178,8 +178,6 @@ public class ServerRequests {
         byteBuf.writeInt(filesList.size());
         ctx.write(byteBuf);
 
-        ctx.flush();
-
         for (int i = 0; i < filesList.size(); i++) {
             int nameLength = filesList.get(i).length();
             byteBuf = ByteBufAllocator.DEFAULT.buffer(4);

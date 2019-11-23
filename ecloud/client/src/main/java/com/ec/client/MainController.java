@@ -35,7 +35,7 @@ public class MainController implements Initializable {
     private TextField IP_ADDRESS;
 
     @FXML
-    private Label isOnline;
+    protected Label isOnline;
 
     @FXML
     protected TextArea logArea;
@@ -67,10 +67,11 @@ public class MainController implements Initializable {
             }
         };
 
-        //Если папки на клиенте не созданы
         checkExistDirectories();
         network.setController(this);
-        connectBtn();
+        refreshLocalFilesList();
+        connect();
+
     }
 
     @FXML
@@ -158,6 +159,16 @@ public class MainController implements Initializable {
                 filesList_CLIENT.getItems().clear();
                 Files.list(Paths.get(FILES_PATH)).map(p -> p.getFileName().toString()).forEach(o -> filesList_CLIENT.getItems().add(o));
             } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public void refreshConnectionState(String text) {
+        updateUI(() -> {
+            try {
+                isOnline.setText(text);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });

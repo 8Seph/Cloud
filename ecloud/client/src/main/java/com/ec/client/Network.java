@@ -44,7 +44,12 @@ public class Network {
                     currentChannel = socketChannel;
                 }
             });
+
             ChannelFuture channelFuture = b.connect("localhost", 8189).sync();
+            // todo
+            controller.getFilesListOnServer();
+            controller.refreshConnectionState("ONLINE");
+
             channelFuture.channel().closeFuture().sync();
 
         } catch (Exception e) {
@@ -53,6 +58,7 @@ public class Network {
             try {
                 group.shutdownGracefully().sync();
                 currentChannel.close();
+                controller.refreshConnectionState("OFFLINE");
                 System.out.println("Channel closed");
             } catch (InterruptedException e) {
                 e.printStackTrace();

@@ -71,12 +71,9 @@ public class ClientRequests {
                 byteBuf.readBytes(name);
                 filesList.add(new String(name));
             }
-
         }
-        System.out.println(filesList);
         controller.refreshServerFilesList(filesList);
         byteBuf.release();
-
     }
 
     public static void getServerFilesList(Channel channel) {
