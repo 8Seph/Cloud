@@ -56,20 +56,27 @@ public class ClientRequests {
     public static void updateServerFileList(ChannelHandlerContext ctx, ByteBuf byteBuf, MainController controller) {
 
         List<String> filesList = new LinkedList<>();
+        int filesCount = 0;
 
         // Количество файлов
-        int filesCount = byteBuf.readInt();
-
-        // Прием списка файлов из каталога
-        for (int i = 0; i < filesCount; i++) {
-            int nameLength = byteBuf.readInt();
-            byte[] name = new byte[nameLength];
-            byteBuf.readBytes(name);
-            filesList.add(new String(name));
+        if (byteBuf.readableBytes() >= 4) {
+            filesCount = byteBuf.readInt();
         }
 
+        // Прием списка файлов из каталога
+        if (byteBuf.readableBytes() >= 4) {
+            for (int i = 0; i < filesCount; i++) {
+                int nameLength = byteBuf.readInt();
+                byte[] name = new byte[nameLength];
+                byteBuf.readBytes(name);
+                filesList.add(new String(name));
+            }
+
+        }
+        System.out.println(filesList);
         controller.refreshServerFilesList(filesList);
         byteBuf.release();
+
     }
 
     public static void getServerFilesList(Channel channel) {

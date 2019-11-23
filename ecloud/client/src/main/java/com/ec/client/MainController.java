@@ -1,7 +1,5 @@
 package com.ec.client;
 
-
-import com.ec.common.FilesList;
 import io.netty.channel.ChannelFutureListener;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
