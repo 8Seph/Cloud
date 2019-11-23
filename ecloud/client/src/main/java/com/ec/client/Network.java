@@ -5,9 +5,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.serialization.ClassResolvers;
-import io.netty.handler.codec.serialization.ObjectDecoder;
-import io.netty.handler.codec.serialization.ObjectEncoder;
 
 public class Network {
     protected static String IP_ADDRESS;
@@ -41,9 +38,8 @@ public class Network {
             b.handler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
                     socketChannel.pipeline().addLast(
-                            new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
-                           // new ObjectEncoder(),
-                            new TmpHandler(controller)
+                       //     new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                            new ClientCommandHandler(controller)
                     );
                     currentChannel = socketChannel;
                 }

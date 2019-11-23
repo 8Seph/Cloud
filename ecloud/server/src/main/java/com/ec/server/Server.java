@@ -26,10 +26,7 @@ public class Server {
                 @Override
                 protected void initChannel(SocketChannel socketChannel) throws Exception { //настройка конвеера для каждого подключившегося клиента
                     socketChannel.pipeline().addLast(
-                         //   new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
-                            new ObjectEncoder(),
-                            new StartHandler()
-
+                            new ServerCommandHandler()
                     );
                 }
             })

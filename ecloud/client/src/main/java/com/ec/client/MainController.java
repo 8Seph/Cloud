@@ -19,6 +19,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -28,7 +29,6 @@ public class MainController implements Initializable {
     private int selectedIndex_CLIENT = -1;
     private Network network = Network.getInstance();
     private ChannelFutureListener finishListener;
-
 
     @FXML
     private ListView<String> filesList_CLIENT, filesList_SERVER;
@@ -70,24 +70,9 @@ public class MainController implements Initializable {
         };
 
         //Если папки на клиенте не созданы
-        if (!Files.exists(Paths.get(FILES_PATH))) {
-            try {
-                Files.createDirectories(Paths.get(FILES_PATH));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        checkExistDirectories();
         network.setController(this);
         connectBtn();
-    }
-
-    private void connect() {
-        new Thread(() -> network.start()).start();
-    }
-
-    @FXML
-    public void disconnectBtn() {
-        network.stop();
     }
 
     @FXML
@@ -95,6 +80,11 @@ public class MainController implements Initializable {
         Network.IP_ADDRESS = IP_ADDRESS.getText();
         connect();
         refreshLocalFilesList();
+    }
+
+    @FXML
+    public void disconnectBtn() {
+        network.stop();
     }
 
     @FXML
@@ -111,15 +101,19 @@ public class MainController implements Initializable {
         if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
             String fileName = filesList_SERVER.getItems().get(selectedIndex_SERVER);
 
-            Sendler.deleteFileOnServer(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
+            ClientRequests.deleteFileOnServer(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
         }
     }
 
     @FXML
     public void search(ActionEvent event) throws IOException {
-        Sendler.getServerFilesList(network.getCurrentChannel());
+        ClientRequests.getServerFilesList(network.getCurrentChannel());
     }
 
+    @FXML
+    public void sendFileBtn(ActionEvent event) throws IOException, InterruptedException {
+        ClientRequests.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
+    }
 
     @FXML
     public void downloadBtn(ActionEvent actionEvent) {
@@ -128,21 +122,30 @@ public class MainController implements Initializable {
 //        }
     }
 
-    @FXML
-    public void sendFileBtn(ActionEvent event) throws IOException, InterruptedException {
-        Sendler.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
+    private void checkExistDirectories() {
+        if (!Files.exists(Paths.get(FILES_PATH))) {
+            try {
+                Files.createDirectories(Paths.get(FILES_PATH));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void connect() {
+        new Thread(() -> network.start()).start();
     }
 
 
     public void getFilesListOnServer() {
-        Sendler.getServerFilesList(network.getCurrentChannel());
+        ClientRequests.getServerFilesList(network.getCurrentChannel());
     }
 
-    public void refreshServerFilesList(FilesList fm) {
+    public void refreshServerFilesList(List<String> filesList) {
         updateUI(() -> {
             try {
                 filesList_SERVER.getItems().clear();
-                for (String str : fm.getFilesList()) {
+                for (String str : filesList) {
                     filesList_SERVER.getItems().add(str);
                 }
             } catch (Exception e) {

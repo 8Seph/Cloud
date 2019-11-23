@@ -1,26 +1,21 @@
 package com.ec.server;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
-public class StartHandler extends ChannelInboundHandlerAdapter {
+public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
 
-    // Обьект для обработки запросов на сервере
-    static boolean fileSending = false;
-
-    Requests requests = new Requests();
+    private ServerRequests requests = new ServerRequests();
+    protected static boolean fileSending = false; // флаг для обозначения загрузки файла
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf byteBuf = (ByteBuf) msg;
 
-
         if (!fileSending) {
-            System.out.println("--------- START HANDLER ---------");
             int command = byteBuf.readByte();
-            System.out.println(command);
+            System.out.println("START HANDLER:\nCommand: " + command);
 
             // Инициализация загрузки файла на сервер
             if (command == 66) {
@@ -38,20 +33,16 @@ public class StartHandler extends ChannelInboundHandlerAdapter {
                 requests.sendFilesList(ctx);
             }
 
+            // Отправка файла
+            if (command == 99){
+                requests.sendFile(ctx, byteBuf);
+            }
+
         } else {
+            // Продолжение загрузки файла
             requests.downloadFile(ctx, byteBuf);
         }
-
-
     }
-
-//        // Получения файла
-//        if (fileSending) {
-//            ctx.channel().pipeline().addLast(new FileHandler());
-//            ctx.fireChannelRead(msg);
-//            ctx.channel().pipeline().remove(this);
-//            Requests.downloadFile(ctx, byteBuf);
-//        }
 
 
     @Override
