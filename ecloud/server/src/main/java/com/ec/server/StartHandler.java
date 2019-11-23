@@ -8,31 +8,50 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 public class StartHandler extends ChannelInboundHandlerAdapter {
 
     // Обьект для обработки запросов на сервере
+    static boolean fileSending = false;
+
+    Requests requests = new Requests();
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("--------- START HANDLER ---------");
         ByteBuf byteBuf = (ByteBuf) msg;
-        int command = byteBuf.readByte();
-        System.out.println(command);
 
-        // Получения файла
-        if (command == 66) {
-            ctx.channel().pipeline().addLast(new FileHandler());
-            ctx.fireChannelRead(msg);
-            ctx.channel().pipeline().remove(this);
+
+        if (!fileSending) {
+            System.out.println("--------- START HANDLER ---------");
+            int command = byteBuf.readByte();
+            System.out.println(command);
+
+            // Инициализация загрузки файла на сервер
+            if (command == 66) {
+                fileSending = true;
+                requests.downloadFile(ctx, byteBuf);
+            }
+
+            // Удаление файла на сервере
+            if (command == 33) {
+                requests.deleteFile(ctx, byteBuf);
+            }
+
+            // Отправка файл листа
+            if (command == 25) {
+                requests.sendFilesList(ctx);
+            }
+
+        } else {
+            requests.downloadFile(ctx, byteBuf);
         }
 
-        // Отправка файл листа
-        if (command == 25) {
-            Requests.sendFilesList(ctx);
-        }
 
-        // Удаление файла на сервере
-        if (command == 33) {
-            Requests.deleteFile(ctx, byteBuf);
-        }
     }
+
+//        // Получения файла
+//        if (fileSending) {
+//            ctx.channel().pipeline().addLast(new FileHandler());
+//            ctx.fireChannelRead(msg);
+//            ctx.channel().pipeline().remove(this);
+//            Requests.downloadFile(ctx, byteBuf);
+//        }
 
 
     @Override
