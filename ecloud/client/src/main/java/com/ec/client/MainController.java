@@ -1,5 +1,6 @@
 package com.ec.client;
 
+
 import com.ec.common.FilesList;
 import io.netty.channel.ChannelFutureListener;
 import javafx.application.Platform;
@@ -76,15 +77,21 @@ public class MainController implements Initializable {
                 e.printStackTrace();
             }
         }
-
+        network.setController(this);
+        connectBtn();
     }
 
-    private void connect() throws InterruptedException {
+    private void connect() {
         new Thread(() -> network.start()).start();
     }
 
     @FXML
-    public void connectBtn() throws InterruptedException {
+    public void disconnectBtn() {
+        network.stop();
+    }
+
+    @FXML
+    public void connectBtn() {
         Network.IP_ADDRESS = IP_ADDRESS.getText();
         connect();
         refreshLocalFilesList();
@@ -101,15 +108,16 @@ public class MainController implements Initializable {
             }
             refreshLocalFilesList();
         }
-//        if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
-//            FileRequest fm = new FileRequest("/delete " + filesList_SERVER.getItems().get(selectedIndex_SERVER));
-//            Network.sendMsg(fm);
-//        }
+        if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
+            String fileName = filesList_SERVER.getItems().get(selectedIndex_SERVER);
+
+            Sendler.deleteFileOnServer(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
+        }
     }
 
     @FXML
     public void search(ActionEvent event) throws IOException {
-        FIleSendler.getServerFilesList(network.getCurrentChannel());
+        Sendler.getServerFilesList(network.getCurrentChannel());
     }
 
 
@@ -121,13 +129,13 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void sendFileBtn(ActionEvent event) throws IOException {
-        FIleSendler.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
+    public void sendFileBtn(ActionEvent event) throws IOException, InterruptedException {
+        Sendler.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
     }
 
 
     public void getFilesListOnServer() {
-
+        Sendler.getServerFilesList(network.getCurrentChannel());
     }
 
     public void refreshServerFilesList(FilesList fm) {

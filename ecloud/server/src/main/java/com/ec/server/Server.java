@@ -5,10 +5,13 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
+import io.netty.handler.codec.serialization.ObjectEncoder;
 
 
 public class Server {
-    public final String FILES_PATH = "storage/server/";
+    public static final String FILES_PATH = "storage/server/";
 
     public void run() throws Exception {
 
@@ -23,7 +26,10 @@ public class Server {
                 @Override
                 protected void initChannel(SocketChannel socketChannel) throws Exception { //настройка конвеера для каждого подключившегося клиента
                     socketChannel.pipeline().addLast(
-                            new TestHandler(FILES_PATH)
+                         //   new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
+                            new ObjectEncoder(),
+                            new StartHandler()
+
                     );
                 }
             })

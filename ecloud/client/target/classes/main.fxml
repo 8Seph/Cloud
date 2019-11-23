@@ -113,6 +113,14 @@
                      <Insets left="10.0" />
                   </HBox.margin>
                </Button>
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#disconnectBtn" text="Disconnect" textAlignment="CENTER" textOverrun="CLIP">
+                  <font>
+                     <Font name="System Bold" size="11.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor>
+               </Button>
             </children>
          </HBox>
       </children>

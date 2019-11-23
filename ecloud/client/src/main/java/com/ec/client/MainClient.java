@@ -2,6 +2,7 @@ package com.ec.client;
 
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,6 +19,7 @@ public class MainClient extends Application {
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
+        primaryStage.setOnCloseRequest(e -> Network.getInstance().stop());
     }
 
     public static void main(String[] args) {
