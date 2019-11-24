@@ -15,7 +15,7 @@ public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
 
         if (!fileSending) {
             int command = byteBuf.readByte();
-            System.out.println("START HANDLER:\nCommand: " + command);
+            System.out.println("HANDLER:\nCommand: " + command);
 
             // Инициализация загрузки файла на сервер
             if (command == 66) {

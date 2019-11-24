@@ -3,13 +3,11 @@ package com.ec.client;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.*;
-import io.netty.util.ReferenceCountUtil;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,7 +47,26 @@ public class ClientRequests {
 
     }
 
-    public static void requestFile(String fileName) {
+    public static void requestFile(Channel ctx, Path path) throws IOException {
+        int nameLength = path.getFileName().toString().length();
+        byte[] fileName = path.getFileName().toString().getBytes();
+
+        // Command
+        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.buffer(1);
+        byteBuf.writeByte(99);
+        ctx.write(byteBuf);
+
+        // Length
+        byteBuf = ByteBufAllocator.DEFAULT.buffer(4);
+        byteBuf.writeInt(nameLength);
+        ctx.write(byteBuf);
+
+        // FileName
+        byteBuf = ByteBufAllocator.DEFAULT.buffer(8);
+        byteBuf.writeBytes(fileName);
+        ctx.write(byteBuf);
+
+        ctx.flush();
 
     }
 
@@ -76,30 +93,30 @@ public class ClientRequests {
         byteBuf.release();
     }
 
-    public static void getServerFilesList(Channel channel) {
+    public static void getServerFilesList(Channel ctx) {
         ByteBuf buf = ByteBufAllocator.DEFAULT.directBuffer(1);
         buf.writeByte((byte) 25);
-        channel.writeAndFlush(buf);
+        ctx.writeAndFlush(buf);
     }
 
-    public static void deleteFileOnServer(Channel channel, Path path) {
+    public static void deleteFileOnServer(Channel ctx, Path path) {
         byte[] fileName = path.getFileName().toString().getBytes();
 
         //Отправка команды для начала удаления файла
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.directBuffer(1);
         byteBuf.writeByte((byte) 33);
-        channel.write(byteBuf);
+        ctx.write(byteBuf);
 
         // Отправка длины имени
         byteBuf = ByteBufAllocator.DEFAULT.directBuffer(4);
         byteBuf.writeInt(path.getFileName().toString().length());
-        channel.write(byteBuf);
+        ctx.write(byteBuf);
 
         // Отправка имени
         byteBuf = ByteBufAllocator.DEFAULT.directBuffer(fileName.length);
         byteBuf.writeBytes(fileName);
-        channel.write(byteBuf);
+        ctx.write(byteBuf);
 
-        channel.flush(); // вынесено отдельно, для того чтобы байты отправились 100% в правильном порядке
+        ctx.flush(); // вынесено отдельно, для того чтобы байты отправились 100% в правильном порядке
     }
 }

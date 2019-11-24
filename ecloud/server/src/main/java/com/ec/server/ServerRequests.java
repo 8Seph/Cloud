@@ -89,34 +89,61 @@ public class ServerRequests {
 
     public void sendFile(ChannelHandlerContext ctx, ByteBuf nameBuf) throws IOException {
 
-        String fileName = "";
+        int nameLength = nameBuf.readInt();
+        byte[] tmp = new byte[nameLength];
+
+        nameBuf.readBytes(tmp);
+        String fileName = new String(tmp);
+        System.out.println(fileName);
+
+
+
+
+
+
+
+
+
+
         Path path = Paths.get(Server.FILES_PATH + fileName);
-        FileRegion region = new DefaultFileRegion(new FileInputStream(path.toFile()).getChannel(), 0, Files.size(path));
-        byte[] fileName_byteArr = path.getFileName().toString().getBytes();
-
-        // Команда для подготовки хендлепа на передачу файла
-        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.directBuffer(1);
-        byteBuf.writeByte((byte) 66);
-        ctx.write(byteBuf);
-
-        // Отправка длины имени
-        byteBuf = ByteBufAllocator.DEFAULT.directBuffer(4);
-        byteBuf.writeInt(path.getFileName().toString().length());
-        ctx.write(byteBuf);
 
 
-        // Отправка имени
-        byteBuf = ByteBufAllocator.DEFAULT.directBuffer(fileName_byteArr.length);
-        byteBuf.writeBytes(fileName_byteArr);
-        ctx.write(byteBuf);
 
-        // Отправка размера файла
-        byteBuf = ByteBufAllocator.DEFAULT.directBuffer(8);
-        byteBuf.writeLong(Files.size(path));
-        ctx.write(byteBuf);
 
-        ctx.flush();
-        ctx.writeAndFlush(region);
+
+
+
+
+
+
+
+
+//        FileRegion region = new DefaultFileRegion(new FileInputStream(path.toFile()).getChannel(), 0, Files.size(path));
+//        byte[] fileName_byteArr = path.getFileName().toString().getBytes();
+//
+//        // Команда для подготовки хендлепа на передачу файла
+//        ByteBuf byteBuf = ByteBufAllocator.DEFAULT.directBuffer(1);
+//        byteBuf.writeByte((byte) 66);
+//        ctx.write(byteBuf);
+//
+//        // Отправка длины имени
+//        byteBuf = ByteBufAllocator.DEFAULT.directBuffer(4);
+//        byteBuf.writeInt(path.getFileName().toString().length());
+//        ctx.write(byteBuf);
+//
+//
+//        // Отправка имени
+//        byteBuf = ByteBufAllocator.DEFAULT.directBuffer(fileName_byteArr.length);
+//        byteBuf.writeBytes(fileName_byteArr);
+//        ctx.write(byteBuf);
+//
+//        // Отправка размера файла
+//        byteBuf = ByteBufAllocator.DEFAULT.directBuffer(8);
+//        byteBuf.writeLong(Files.size(path));
+//        ctx.write(byteBuf);
+//
+//        ctx.flush();
+//        ctx.writeAndFlush(region);
     }
 
     /**

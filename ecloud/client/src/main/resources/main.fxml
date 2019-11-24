@@ -60,14 +60,6 @@
                <Insets right="10.0" />
             </HBox.margin>
          </Button>
-         <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="20.0" mnemonicParsing="false" onAction="#search" text="Search" textAlignment="CENTER" textOverrun="CLIP">
-            <font>
-               <Font name="System Bold" size="11.0" />
-            </font>
-            <cursor>
-               <Cursor fx:constant="HAND" />
-            </cursor>
-         </Button>
       </children>
       <padding>
          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -102,7 +94,7 @@
                   </HBox.margin>
                </Label>
                <PasswordField focusTraversable="false" prefHeight="25.0" prefWidth="110.0" promptText="todo" />
-               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#connectBtn" text="Connect" textAlignment="CENTER" textOverrun="CLIP">
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#connectBtn" text="Reconnect" textAlignment="CENTER" textOverrun="CLIP">
                   <font>
                      <Font name="System Bold" size="11.0" />
                   </font>
@@ -110,7 +102,7 @@
                      <Cursor fx:constant="HAND" />
                   </cursor>
                   <HBox.margin>
-                     <Insets left="10.0" />
+                     <Insets left="10.0" right="5.0" />
                   </HBox.margin>
                </Button>
                <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" maxHeight="25.0" minHeight="25.0" mnemonicParsing="false" onAction="#disconnectBtn" text="Disconnect" textAlignment="CENTER" textOverrun="CLIP">
@@ -212,7 +204,7 @@
                      <Insets />
                   </HBox.margin>
                </Label>
-               <Label fx:id="isOnline" text="status">
+               <Label fx:id="isOnline" text="WAIT">
                   <HBox.margin>
                      <Insets left="5.0" right="10.0" />
                   </HBox.margin>

@@ -16,7 +16,11 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
         ByteBuf byteBuf = (ByteBuf) msg;
         int command = byteBuf.readByte();
-        System.out.println("command: " + command);
+        System.out.println("HANDLER:\nCommand: " + command);
+
+        if (command == 66){
+
+        }
 
         if (command == 25) {
             ClientRequests.updateServerFileList(ctx, byteBuf, controller);

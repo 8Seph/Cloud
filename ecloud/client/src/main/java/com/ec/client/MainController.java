@@ -115,10 +115,10 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    public void downloadBtn(ActionEvent actionEvent) {
-//        if (selectedIndex_SERVER != -1) {
-//            Network.sendMsg(new FileRequest(filesList_SERVER.getItems().get(selectedIndex_SERVER)));
-//        }
+    public void downloadBtn(ActionEvent actionEvent) throws IOException {
+        if (selectedIndex_SERVER != -1) {
+            ClientRequests.requestFile(network.getCurrentChannel(), Paths.get((FILES_PATH + filesList_SERVER.getItems().get(selectedIndex_SERVER))));
+        }
     }
 
     private void checkExistDirectories() {
@@ -140,6 +140,7 @@ public class MainController implements Initializable {
         ClientRequests.getServerFilesList(network.getCurrentChannel());
     }
 
+    // todo Вызывается из ClientRequests.updateServerFileList()
     public void refreshServerFilesList(List<String> filesList) {
         updateUI(() -> {
             try {
@@ -152,6 +153,7 @@ public class MainController implements Initializable {
             }
         });
     }
+
 
     public void refreshLocalFilesList() {
         updateUI(() -> {
