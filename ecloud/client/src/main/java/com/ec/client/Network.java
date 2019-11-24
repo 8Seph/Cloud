@@ -25,6 +25,10 @@ public class Network {
         this.controller = controller;
     }
 
+    public MainController getController() {
+        return controller;
+    }
+
     public Channel getCurrentChannel() {
         return currentChannel;
     }

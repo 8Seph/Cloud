@@ -179,7 +179,7 @@ public class ClientRequests {
                     currentState = DownloadState.NAME_LENGTH;
                     System.out.println("Фаил загружен!");
                     ClientCommandHandler.fileSending = false;
-
+                    Network.getInstance().getController().refreshLocalFilesList(); // todo
                     out.close();
                     receivedFileLength = 0; // !!!!!
                 }

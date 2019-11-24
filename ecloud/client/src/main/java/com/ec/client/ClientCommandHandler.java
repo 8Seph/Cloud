@@ -23,18 +23,19 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
             int command = byteBuf.readByte();
             System.out.println("HANDLER:\nCommand: " + command);
 
+            // Начало загрузки файла с сервера
             if (command == 66){
                 fileSending = true;
                 ClientRequests.downloadFile(ctx, byteBuf);
             }
 
+            // Получение списка файлов
             if (command == 25) {
                 ClientRequests.updateServerFileList(ctx, byteBuf, controller);
             }
         } else {
             ClientRequests.downloadFile(ctx, byteBuf);
         }
-
 
     }
 
