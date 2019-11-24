@@ -32,12 +32,12 @@ public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
                 requests.deleteFile(ctx, byteBuf);
             }
 
-            // Отправка файл листа
+            // Отправка файл листа клиенту
             if (command == 25) {
                 requests.sendFilesList(ctx);
             }
 
-            // Отправка файла
+            // Отправка файла клиенту
             if (command == 99) {
                 requests.sendFile(ctx, byteBuf);
             }

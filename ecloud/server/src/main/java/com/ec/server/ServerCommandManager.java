@@ -31,12 +31,9 @@ public class ServerCommandManager {
     private long receivedFileLength;
     private long fileSize;
 
-
     public void downloadFile(ChannelHandlerContext ctx, ByteBuf buf, ServerCommandHandler handler) throws Exception {
 
-        String fileName;
-
-        // 1. Получение длины имени.
+        // Name length
         if (currentState == DownloadState.NAME_LENGTH) {
             if (buf.readableBytes() >= 4) {
                 nameLength = buf.readInt();
@@ -45,19 +42,18 @@ public class ServerCommandManager {
             }
         }
 
-        // 2. Инициализация имени.
+        // Create Stream
         if (currentState == DownloadState.NAME) {
             if (buf.readableBytes() >= nameLength) {
                 byte[] tmp = new byte[nameLength];
                 buf.readBytes(tmp); // запись данных из буффера в массив
-                fileName = new String(tmp);
-                out = new BufferedOutputStream(new FileOutputStream(Server.FILES_PATH + fileName));
+
+                out = new BufferedOutputStream(new FileOutputStream(Server.FILES_PATH + new String(tmp)));
                 currentState = DownloadState.FILE_SIZE;
-                System.out.println("Имя файла: " + fileName);
             }
         }
 
-        // 3. Получение размера файла.
+        // File size
         if (currentState == DownloadState.FILE_SIZE) {
             if (buf.readableBytes() >= 8) {
                 fileSize = buf.readLong();
@@ -66,14 +62,13 @@ public class ServerCommandManager {
             }
         }
 
-        // 4. Передача файла.
+        // Downloading
         if (currentState == DownloadState.SENDING) {
             while (buf.readableBytes() > 0) {
                 out.write(buf.readByte());
                 receivedFileLength++;
                 if (fileSize == receivedFileLength) {
                     currentState = DownloadState.NAME_LENGTH;
-                    System.out.println("Фаил загружен!");
                     handler.setDownFlag(false);
                     sendFilesList(ctx);
                     out.close();
@@ -96,30 +91,28 @@ public class ServerCommandManager {
 
         nameBuf.readBytes(tmp);
         String fileName = new String(tmp);
-        System.out.println("Передача файла" + fileName);
 
         Path path = Paths.get(Server.FILES_PATH + fileName);
 
         FileRegion region = new DefaultFileRegion(new FileInputStream(path.toFile()).getChannel(), 0, Files.size(path));
         byte[] fileName_byteArr = path.getFileName().toString().getBytes();
 
-        // Команда для подготовки хендлепа на передачу файла
+        // Command
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.directBuffer(1);
         byteBuf.writeByte((byte) 66);
         ctx.write(byteBuf);
 
-        // Отправка длины имени
+        // Name length
         byteBuf = ByteBufAllocator.DEFAULT.directBuffer(4);
         byteBuf.writeInt(path.getFileName().toString().length());
         ctx.write(byteBuf);
 
-
-        // Отправка имени
+        // Name
         byteBuf = ByteBufAllocator.DEFAULT.directBuffer(fileName_byteArr.length);
         byteBuf.writeBytes(fileName_byteArr);
         ctx.write(byteBuf);
 
-        // Отправка размера файла
+        // File Length
         byteBuf = ByteBufAllocator.DEFAULT.directBuffer(8);
         byteBuf.writeLong(Files.size(path));
         ctx.write(byteBuf);
@@ -141,30 +134,26 @@ public class ServerCommandManager {
 
     public void deleteFile(ChannelHandlerContext ctx, ByteBuf byteBuf) throws Exception {
         int nameLength = 0;
-        String fileName;
 
-        // 1. Получение длины имени.
+        // Name length
         if (deleteState == DeleteState.NAME_LENGTH) {
             if (byteBuf.readableBytes() >= 4) {
                 nameLength = byteBuf.readInt();
                 deleteState = DeleteState.NAME;
-                System.out.println("Длина имени: " + nameLength);
             }
         }
 
-        // 2. Инициализация имени и удаление файла.
+        // Delete a file
         if (deleteState == DeleteState.NAME) {
             if (byteBuf.readableBytes() >= nameLength) {
                 byte[] tmp = new byte[nameLength];
                 byteBuf.readBytes(tmp); // запись данных из буффера в массив
-                fileName = new String(tmp);
 
-                Files.delete(Paths.get(Server.FILES_PATH + fileName));
+                Files.delete(Paths.get(Server.FILES_PATH + new String(tmp)));
                 deleteState = DeleteState.NAME_LENGTH;
 
                 sendFilesList(ctx);
                 ctx.flush();
-                System.out.println("Фаил удален: " + fileName);
             }
         }
     }
@@ -177,12 +166,12 @@ public class ServerCommandManager {
         List<String> filesList = new LinkedList<>();
         Files.list(Paths.get(Server.FILES_PATH)).map(p -> p.getFileName().toString()).forEach(o -> filesList.add(o));
 
-        // Команда для подготовки принятия списка файлов
+        // Command
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.buffer(1);
         byteBuf.writeByte((byte) 25);
         ctx.write(byteBuf);
 
-        // Количество файлов в каталоге
+        // Files count
         byteBuf = ByteBufAllocator.DEFAULT.buffer(4);
         byteBuf.writeInt(filesList.size());
         ctx.write(byteBuf);
@@ -198,8 +187,6 @@ public class ServerCommandManager {
             byteBuf.writeBytes(fileName);
             ctx.write(byteBuf);
         }
-
         ctx.flush();
-
     }
 }

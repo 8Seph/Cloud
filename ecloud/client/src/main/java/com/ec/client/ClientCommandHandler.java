@@ -33,7 +33,9 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
             if (command == 25) {
                 ClientCommandManager.updateServerFileList(ctx, byteBuf, controller);
             }
+
         } else {
+            /// продолжение загрузки файла
             ClientCommandManager.downloadFile(ctx, byteBuf);
         }
 
