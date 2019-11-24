@@ -15,7 +15,7 @@ public class StartClient extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setTitle("e_Cloud");
-        primaryStage.setMinWidth(650);
+        primaryStage.setMinWidth(680);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

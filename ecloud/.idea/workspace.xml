@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8ff76379-9a06-4696-8604-75d5f026abcc" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientCommandHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientCommandHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientRequests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java" afterDir="false" />
     </list>
     <list id="50ed41b5-527d-4877-9343-46c8b59a43c3" name="connect" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,19 +38,23 @@
     <option name="autoscrollToSource" value="true" />
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="true" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="ecloud" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+            <state relative-caret-position="679">
+              <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#533#534#0" expanded="true" />
                 <element signature="e#564#565#0" expanded="true" />
                 <element signature="e#624#625#0" expanded="true" />
                 <element signature="e#668#669#0" expanded="true" />
+                <element signature="e#713#714#0" expanded="true" />
                 <element signature="e#746#747#0" expanded="true" />
               </folding>
             </state>
@@ -91,7 +94,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientRequests.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="729">
@@ -106,8 +109,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="204">
+              <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -217,14 +220,14 @@
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/RequestsClient.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/RequestsServer.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainClient.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/Server.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/ServerCommandHandler.java" />
         <option value="$PROJECT_DIR$/server/src/main/java/com/ec/server/ServerRequests.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/MainController.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientCommandHandler.java" />
-        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java" />
         <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientRequests.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java" />
+        <option value="$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java" />
       </list>
     </option>
   </component>
@@ -501,24 +504,24 @@
       <workItem from="1574094512794" duration="724000" />
       <workItem from="1574260413016" duration="634000" />
       <workItem from="1574415618105" duration="66345000" />
-      <workItem from="1574543703400" duration="11294000" />
+      <workItem from="1574543703400" duration="11562000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260270000" />
+    <option name="totallyTimeSpent" value="260538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.89244187" visible="true" weight="0.19083156" />
-      <window_info id="Structure" order="1" sideWeight="0.10755814" side_tool="true" weight="0.19616205" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.63916254" visible="true" weight="0.19083156" />
+      <window_info id="Structure" order="1" sideWeight="0.36083743" side_tool="true" weight="0.19083156" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
       <window_info id="Capture Tool" order="4" />
       <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Favorites" order="6" sideWeight="0.36083743" side_tool="true" weight="0.19083156" />
       <window_info id="Learn" order="7" weight="0.32995737" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3290461" />
@@ -905,13 +908,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientCommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
@@ -947,27 +943,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="43" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#624#625#0" expanded="true" />
-            <element signature="e#668#669#0" expanded="true" />
-            <element signature="e#746#747#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/ClientRequests.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="729">
           <caret line="189" column="5" lean-forward="true" selection-start-line="189" selection-start-column="5" selection-end-line="189" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/StartClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/main/java/com/ec/client/Network.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="679">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#533#534#0" expanded="true" />
+            <element signature="e#564#565#0" expanded="true" />
+            <element signature="e#624#625#0" expanded="true" />
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#713#714#0" expanded="true" />
+            <element signature="e#746#747#0" expanded="true" />
           </folding>
         </state>
       </provider>

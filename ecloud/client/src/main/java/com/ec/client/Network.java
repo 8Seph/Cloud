@@ -6,6 +6,8 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
+import java.util.LinkedList;
+
 public class Network {
     protected static String IP_ADDRESS;
     private static Network instance = new Network();
@@ -62,8 +64,12 @@ public class Network {
             try {
                 group.shutdownGracefully().sync();
                 currentChannel.close();
-                controller.refreshConnectionState("OFFLINE");
                 System.out.println("Channel closed");
+
+                //todo
+                controller.refreshServerFilesList(new LinkedList<>());
+                controller.refreshConnectionState("OFFLINE");
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -79,6 +85,10 @@ public class Network {
                     currentChannel.close();
                 } catch (Exception e) {
                     System.out.println("Close, no connect");
+
+                    //todo
+                    controller.refreshServerFilesList(new LinkedList<>());
+                    controller.refreshConnectionState("OFFLINE");
                 }
             }
         }).start();
