@@ -14,6 +14,7 @@ public class Network {
     private Channel currentChannel;
     private EventLoopGroup group;
     private MainController controller;
+    private boolean reconnect = true;
 
 
     private Network() {
@@ -44,7 +45,6 @@ public class Network {
             b.handler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
                     socketChannel.pipeline().addLast(
-                       //     new ObjectDecoder(50 * 1024 * 1024, ClassResolvers.cacheDisabled(null)),
                             new ClientCommandHandler(controller)
                     );
                     currentChannel = socketChannel;
@@ -53,8 +53,8 @@ public class Network {
 
             ChannelFuture channelFuture = b.connect("localhost", 8189).sync();
             // todo
-            controller.getFilesListOnServer();
             controller.refreshConnectionState("ONLINE");
+            controller.getFilesListOnServer();
 
             channelFuture.channel().closeFuture().sync();
 
@@ -70,13 +70,21 @@ public class Network {
                 controller.refreshServerFilesList(new LinkedList<>());
                 controller.refreshConnectionState("OFFLINE");
 
+                // todo переподключение
+                if (reconnect){
+                    Thread.sleep(10000);
+                   getController().connectBtn();
+               }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
+    // Новый поток для того чтобы не вис интерфейс при закрытии программы
     public void stop() {
+        reconnect = false;
         new Thread(new Runnable() {
             @Override
             public void run() {

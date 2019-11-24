@@ -6,21 +6,25 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
 
-    private ServerRequests requests = new ServerRequests();
-    protected static boolean fileSending = false; // флаг для обозначения загрузки файла
+    private ServerCommandManager requests = new ServerCommandManager();
+    private boolean downFlag = false; // флаг для обозначения загрузки файла
+
+    public void setDownFlag(boolean downFlag) {
+        this.downFlag = downFlag;
+    }
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         ByteBuf byteBuf = (ByteBuf) msg;
 
-        if (!fileSending) {
+        if (!downFlag) {
             int command = byteBuf.readByte();
             System.out.println("HANDLER:\nCommand: " + command);
 
             // Инициализация загрузки файла на сервер
             if (command == 66) {
-                fileSending = true;
-                requests.downloadFile(ctx, byteBuf);
+                downFlag = true;
+                requests.downloadFile(ctx, byteBuf, this);
             }
 
             // Удаление файла на сервере
@@ -34,13 +38,13 @@ public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
             }
 
             // Отправка файла
-            if (command == 99){
+            if (command == 99) {
                 requests.sendFile(ctx, byteBuf);
             }
 
         } else {
             // Продолжение загрузки файла
-            requests.downloadFile(ctx, byteBuf);
+            requests.downloadFile(ctx, byteBuf, this);
         }
     }
 

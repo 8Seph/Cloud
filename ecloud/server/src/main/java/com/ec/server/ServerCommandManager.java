@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ServerRequests {
+public class ServerCommandManager {
 
 
     /**
@@ -32,7 +32,7 @@ public class ServerRequests {
     private long fileSize;
 
 
-    public void downloadFile(ChannelHandlerContext ctx, ByteBuf buf) throws Exception {
+    public void downloadFile(ChannelHandlerContext ctx, ByteBuf buf, ServerCommandHandler handler) throws Exception {
 
         String fileName;
 
@@ -74,7 +74,7 @@ public class ServerRequests {
                 if (fileSize == receivedFileLength) {
                     currentState = DownloadState.NAME_LENGTH;
                     System.out.println("Фаил загружен!");
-                    ServerCommandHandler.fileSending = false;
+                    handler.setDownFlag(false);
                     sendFilesList(ctx);
                     out.close();
                     receivedFileLength = 0; // !!!!!

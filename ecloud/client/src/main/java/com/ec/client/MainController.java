@@ -100,24 +100,24 @@ public class MainController implements Initializable {
         if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
             String fileName = filesList_SERVER.getItems().get(selectedIndex_SERVER);
 
-            ClientRequests.deleteFileOnServer(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
+            ClientCommandManager.deleteFileOnServer(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
         }
     }
 
     @FXML
     public void search(ActionEvent event) throws IOException {
-        ClientRequests.getServerFilesList(network.getCurrentChannel());
+        ClientCommandManager.getServerFilesList(network.getCurrentChannel());
     }
 
     @FXML
     public void sendFileBtn(ActionEvent event) throws IOException, InterruptedException {
-        ClientRequests.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
+        ClientCommandManager.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
     }
 
     @FXML
     public void downloadBtn(ActionEvent actionEvent) throws IOException {
         if (selectedIndex_SERVER != -1) {
-            ClientRequests.requestFile(network.getCurrentChannel(), Paths.get((FILES_PATH + filesList_SERVER.getItems().get(selectedIndex_SERVER))));
+            ClientCommandManager.requestFile(network.getCurrentChannel(), Paths.get((FILES_PATH + filesList_SERVER.getItems().get(selectedIndex_SERVER))));
         }
     }
 
@@ -137,7 +137,7 @@ public class MainController implements Initializable {
 
 
     public void getFilesListOnServer() {
-        ClientRequests.getServerFilesList(network.getCurrentChannel());
+        ClientCommandManager.getServerFilesList(network.getCurrentChannel());
     }
 
     // todo Вызывается из ClientRequests.updateServerFileList()

@@ -10,7 +10,7 @@ import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ClientRequests {
+public class ClientCommandManager {
 
     public static void sendFile(Path path, Channel ctx, ChannelFutureListener finishListener) throws IOException, InterruptedException {
 
@@ -178,7 +178,7 @@ public class ClientRequests {
                 if (fileSize == receivedFileLength) {
                     currentState = DownloadState.NAME_LENGTH;
                     System.out.println("Фаил загружен!");
-                    ClientCommandHandler.fileSending = false;
+                    ClientCommandHandler.downFlag = false;
                     Network.getInstance().getController().refreshLocalFilesList(); // todo
                     out.close();
                     receivedFileLength = 0; // !!!!!

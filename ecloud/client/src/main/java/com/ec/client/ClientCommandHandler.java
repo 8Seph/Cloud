@@ -13,28 +13,28 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
     }
 
     private MainController controller;
-    protected static boolean fileSending = false;
+    protected static boolean downFlag = false;
 
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws IOException {
         ByteBuf byteBuf = (ByteBuf) msg;
 
-        if (!fileSending){
+        if (!downFlag){
             int command = byteBuf.readByte();
             System.out.println("HANDLER:\nCommand: " + command);
 
             // Начало загрузки файла с сервера
             if (command == 66){
-                fileSending = true;
-                ClientRequests.downloadFile(ctx, byteBuf);
+                downFlag = true;
+                ClientCommandManager.downloadFile(ctx, byteBuf);
             }
 
             // Получение списка файлов
             if (command == 25) {
-                ClientRequests.updateServerFileList(ctx, byteBuf, controller);
+                ClientCommandManager.updateServerFileList(ctx, byteBuf, controller);
             }
         } else {
-            ClientRequests.downloadFile(ctx, byteBuf);
+            ClientCommandManager.downloadFile(ctx, byteBuf);
         }
 
     }
