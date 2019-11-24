@@ -4,8 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.channel.*;
 
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedList;
@@ -118,5 +117,75 @@ public class ClientRequests {
         ctx.write(byteBuf);
 
         ctx.flush(); // вынесено отдельно, для того чтобы байты отправились 100% в правильном порядке
+    }
+
+
+    /**
+     * Блок для работы с загрузкой файлов
+     * todo описание
+     */
+
+
+    public enum DownloadState {
+        NAME_LENGTH, NAME, FILE_SIZE, SENDING
+    }
+
+    private static DownloadState currentState = DownloadState.NAME_LENGTH;
+    private static int nameLength;
+    private static BufferedOutputStream out;
+    private static long receivedFileLength;
+    private static long fileSize;
+
+
+    public static void downloadFile(ChannelHandlerContext ctx, ByteBuf buf) throws IOException {
+        String fileName;
+
+        // 1. Получение длины имени.
+        if (currentState == DownloadState.NAME_LENGTH) {
+            if (buf.readableBytes() >= 4) {
+                nameLength = buf.readInt();
+                currentState = DownloadState.NAME;
+                System.out.println("Длина имени: " + nameLength);
+            }
+        }
+
+        // 2. Инициализация имени.
+        if (currentState == DownloadState.NAME) {
+            if (buf.readableBytes() >= nameLength) {
+                byte[] tmp = new byte[nameLength];
+                buf.readBytes(tmp); // запись данных из буффера в массив
+                fileName = new String(tmp);
+                out = new BufferedOutputStream(new FileOutputStream(MainController.FILES_PATH + fileName));
+                currentState = DownloadState.FILE_SIZE;
+                System.out.println("Имя файла: " + fileName);
+            }
+        }
+
+        // 3. Получение размера файла.
+        if (currentState == DownloadState.FILE_SIZE) {
+            if (buf.readableBytes() >= 8) {
+                fileSize = buf.readLong();
+                System.out.println("Размер файла: " + fileSize);
+                currentState = DownloadState.SENDING;
+            }
+        }
+
+        // 4. Передача файла.
+        if (currentState == DownloadState.SENDING) {
+            while (buf.readableBytes() > 0) {
+                out.write(buf.readByte());
+                receivedFileLength++;
+                if (fileSize == receivedFileLength) {
+                    currentState = DownloadState.NAME_LENGTH;
+                    System.out.println("Фаил загружен!");
+                    ClientCommandHandler.fileSending = false;
+
+                    out.close();
+                    receivedFileLength = 0; // !!!!!
+                }
+            }
+        }
+        buf.release();
+
     }
 }

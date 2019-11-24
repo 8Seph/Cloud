@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+import java.io.IOException;
+
 public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
 
     public ClientCommandHandler(MainController controller) {
@@ -11,20 +13,29 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
     }
 
     private MainController controller;
+    protected static boolean fileSending = false;
 
     @Override
-    public void channelRead(ChannelHandlerContext ctx, Object msg) {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws IOException {
         ByteBuf byteBuf = (ByteBuf) msg;
-        int command = byteBuf.readByte();
-        System.out.println("HANDLER:\nCommand: " + command);
 
-        if (command == 66){
+        if (!fileSending){
+            int command = byteBuf.readByte();
+            System.out.println("HANDLER:\nCommand: " + command);
 
+            if (command == 66){
+                fileSending = true;
+                ClientRequests.downloadFile(ctx, byteBuf);
+            }
+
+            if (command == 25) {
+                ClientRequests.updateServerFileList(ctx, byteBuf, controller);
+            }
+        } else {
+            ClientRequests.downloadFile(ctx, byteBuf);
         }
 
-        if (command == 25) {
-            ClientRequests.updateServerFileList(ctx, byteBuf, controller);
-        }
+
     }
 
 
