@@ -5,6 +5,8 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.serialization.ClassResolvers;
+import io.netty.handler.codec.serialization.ObjectDecoder;
 
 import java.util.LinkedList;
 
@@ -45,7 +47,8 @@ public class Network {
             b.handler(new ChannelInitializer<SocketChannel>() {
                 protected void initChannel(SocketChannel socketChannel) throws Exception {
                     socketChannel.pipeline().addLast(
-                            new ClientCommandHandler(controller)
+                            new ClientCommandHandler(controller),
+                            new ObjectDecoder(10 * 1024 * 1024, ClassResolvers.cacheDisabled(null))
                     );
                     currentChannel = socketChannel;
                 }
@@ -71,10 +74,10 @@ public class Network {
                 controller.refreshConnectionState("OFFLINE");
 
                 // todo переподключение
-                if (reconnect){
+                if (reconnect) {
                     Thread.sleep(10000);
-                   getController().connectBtn();
-               }
+                    getController().connectBtn();
+                }
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -84,21 +87,23 @@ public class Network {
 
     // Новый поток для того чтобы не вис интерфейс при закрытии программы
     public void stop() {
-        reconnect = false;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    group.shutdownGracefully().sync();
-                    currentChannel.close();
-                } catch (Exception e) {
-                    System.out.println("Close, no connect");
-
-                    //todo
-                    controller.refreshServerFilesList(new LinkedList<>());
-                    controller.refreshConnectionState("OFFLINE");
-                }
-            }
-        }).start();
+//        reconnect = false;
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    group.shutdownGracefully().sync();
+//                    currentChannel.close();
+//                } catch (Exception e) {
+//                    System.out.println("Close, no connect");
+//
+//                    //todo
+//                    controller.refreshServerFilesList(new LinkedList<>());
+//                    controller.refreshConnectionState("OFFLINE");
+//
+//                }
+//            }
+//        }).start();
+        System.exit(0);
     }
 }

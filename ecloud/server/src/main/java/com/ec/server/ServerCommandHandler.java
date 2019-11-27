@@ -33,7 +33,7 @@ public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
             }
 
             // Отправка файл листа клиенту
-            if (command == 25) {
+            if (command == 125) {
                 requests.sendFilesList(ctx);
             }
 

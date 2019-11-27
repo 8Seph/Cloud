@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.5+" codebase="http://nld-res.netlab.ru/JWebStart2/nldealer/" href="default/www.netlab.ru/launch.jnlp">
+<information>
+<title>NLDealer</title>
+<vendor>Network Laboratory</vendor>
+<description>NLDealer Client</description>
+<description kind="short">NLDealer Client</description>
+</information>
+<security>
+<all-permissions />
+</security>
+<resources>
+<j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se" />
+<jar href="Launcher.jar" main="true" />
+</resources>
+<application-desc main-class="ru.netlab.client.startup.Bootstrap">
+<argument>default</argument>
+<argument>www.netlab.ru</argument>
+<argument>https://clients.netlab.ru/nldealer/remoting</argument>
+<argument>https://clients1.netlab.ru/nldealer/remoting</argument>
+<argument>http://nld-res.netlab.ru/</argument>
+<argument>http://nld-res1.netlab.ru/</argument>
+<argument>http://www.netlab.ru/nldealer/trust.jks</argument>
+<argument>http://www1.netlab.ru/nldealer/trust.jks</argument>
+</application-desc>
+</jnlp>

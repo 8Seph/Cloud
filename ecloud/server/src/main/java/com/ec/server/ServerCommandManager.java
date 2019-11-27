@@ -168,7 +168,7 @@ public class ServerCommandManager {
 
         // Command
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.buffer(1);
-        byteBuf.writeByte((byte) 25);
+        byteBuf.writeByte((byte) 125);
         ctx.write(byteBuf);
 
         // Files count

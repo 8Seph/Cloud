@@ -30,7 +30,7 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
             }
 
             // Получение списка файлов
-            if (command == 25) {
+            if (command == 125) {
                 ClientCommandManager.updateServerFileList(ctx, byteBuf, controller);
             }
 
@@ -40,6 +40,8 @@ public class ClientCommandHandler extends ChannelInboundHandlerAdapter {
         }
 
     }
+
+
 
 
     @Override

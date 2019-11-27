@@ -1,95 +1,125 @@
 package com.ec.client;
 
-import io.netty.channel.ChannelFutureListener;
 import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.nio.file.*;
 
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    protected static final String FILES_PATH = "D:/storage/client/";
-    private int selectedIndex_SERVER = -1;
-    private int selectedIndex_CLIENT = -1;
+    protected static final String FILES_PATH = "D:/storage/client/01/";
     private Network network = Network.getInstance();
-    private ChannelFutureListener finishListener;
+
+    double xOffset;
+    double yOffset;
 
     @FXML
-    private ListView<String> filesList_CLIENT, filesList_SERVER;
+    private VBox rootNode;
 
     @FXML
-    private TextField IP_ADDRESS;
+    private VBox tableFolders;
 
     @FXML
-    protected Label isOnline;
+    private ListView<String> filesList_SERVER;
 
     @FXML
-    protected TextArea logArea;
+    private Label isOnline;
+
+    @FXML
+    private Button dynamic;
+
+    @FXML
+    private ListView<String> filesList_CLIENT;
+
+    @FXML
+    private ListView<String> folders;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        // Настройка модели выборки для списксов файлов в интефейсе, код повторяется, но в один метод не получилось пока убрать
-        filesList_SERVER.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                selectedIndex_SERVER = newValue.intValue();
-            }
-        });
-
-        filesList_CLIENT.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                selectedIndex_CLIENT = newValue.intValue();
-            }
-        });
-
-        finishListener = future -> {
-            if (!future.isSuccess()) {
-                future.cause().printStackTrace();
-            }
-            if (future.isSuccess()) {
-                System.out.println("Файл успешно передан");
-            }
-        };
-
+        initDoubleClick(filesList_CLIENT);
+        getFoldersOnClient();
         checkExistDirectories();
         network.setController(this);
         refreshLocalFilesList();
         connect();
+    }
+
+
+
+    @FXML
+    void dynamicBtn(ActionEvent event) throws InterruptedException, IOException {
+
+
+        if (filesList_CLIENT.isFocused()) {
+            System.out.println("Dynamic - send");
+            String fileName = filesList_CLIENT.getSelectionModel().getSelectedItem();
+            try {
+                ClientCommandManager.sendFile(Paths.get(FILES_PATH + fileName), network.getCurrentChannel());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            refreshLocalFilesList();
+        }
+        if (filesList_SERVER.isFocused()) {
+            System.out.println("Dynamic - get");
+            String fileName = filesList_SERVER.getSelectionModel().getSelectedItem();
+            ClientCommandManager.requestFile(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
+        }
+
+
+
+
+//        updateUI(() -> {
+//
+//        });
 
     }
 
     @FXML
     public void connectBtn() {
-        Network.IP_ADDRESS = IP_ADDRESS.getText();
+        //  Network.IP_ADDRESS = IP_ADDRESS.getText();
+        Network.IP_ADDRESS = "localhost";
         connect();
         refreshLocalFilesList();
     }
 
     @FXML
-    public void disconnectBtn() {
-        network.stop();
+    public void disconnectBtn() throws IOException {
+        //   network.stop();
+        openFile();
     }
 
     @FXML
-    public void delete() {
-        if (filesList_CLIENT.isFocused() && selectedIndex_CLIENT != -1) {
-            String fileName = filesList_CLIENT.getItems().get(selectedIndex_CLIENT);
+    public void refreshBtn(){
+        refreshLocalFilesList();
+        getFilesListOnServer();
+    }
+
+    @FXML
+    public void deleteBtn() {
+        if (filesList_CLIENT.isFocused()) {
+            String fileName = filesList_CLIENT.getSelectionModel().getSelectedItem();
             try {
                 Files.delete(Paths.get(FILES_PATH + fileName));
             } catch (IOException e) {
@@ -97,9 +127,8 @@ public class MainController implements Initializable {
             }
             refreshLocalFilesList();
         }
-        if (filesList_SERVER.isFocused() && selectedIndex_SERVER != -1) {
-            String fileName = filesList_SERVER.getItems().get(selectedIndex_SERVER);
-
+        if (filesList_SERVER.isFocused()) {
+            String fileName = filesList_SERVER.getSelectionModel().getSelectedItem();
             ClientCommandManager.deleteFileOnServer(network.getCurrentChannel(), Paths.get(FILES_PATH + fileName));
         }
     }
@@ -109,16 +138,63 @@ public class MainController implements Initializable {
         ClientCommandManager.getServerFilesList(network.getCurrentChannel());
     }
 
-    @FXML
-    public void sendFileBtn(ActionEvent event) throws IOException, InterruptedException {
-        ClientCommandManager.sendFile(Paths.get(FILES_PATH + filesList_CLIENT.getItems().get(selectedIndex_CLIENT)), network.getCurrentChannel(), finishListener);
+
+    private void getFoldersOnClient() {
+        List<String> tmp = new LinkedList<>();
+        updateUI(() -> {
+            try {
+                //Только папки в корневом каталоге (2!)
+                Files.walkFileTree(Paths.get(FILES_PATH), new HashSet<>(), 2, new FileVisitor<Path>() {
+                    @Override
+                    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+                        tmp.add(dir.getFileName().toString());
+                        return FileVisitResult.CONTINUE;
+                    }
+
+                    @Override
+                    public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+                        return FileVisitResult.CONTINUE;
+                    }
+
+                    @Override
+                    public FileVisitResult visitFileFailed(Path file, IOException exc) throws IOException {
+                        return FileVisitResult.CONTINUE;
+                    }
+
+                    @Override
+                    public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+                        return FileVisitResult.CONTINUE;
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            for (int i = 0; i < tmp.size(); i++) {
+                folders.getItems().add(tmp.get(i));
+            }
+        });
+
     }
 
-    @FXML
-    public void downloadBtn(ActionEvent actionEvent) throws IOException {
-        if (selectedIndex_SERVER != -1) {
-            ClientCommandManager.requestFile(network.getCurrentChannel(), Paths.get((FILES_PATH + filesList_SERVER.getItems().get(selectedIndex_SERVER))));
-        }
+    private void initDoubleClick(ListView<String> filesList) {
+        filesList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getClickCount() == 2) {
+                    try {
+                        openFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    private void openFile() throws IOException {
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(new File(FILES_PATH + filesList_CLIENT.getSelectionModel().getSelectedItem()));
     }
 
     private void checkExistDirectories() {
@@ -155,7 +231,7 @@ public class MainController implements Initializable {
     }
 
 
-    public void refreshLocalFilesList() {
+    protected void refreshLocalFilesList() {
         updateUI(() -> {
             try {
                 filesList_CLIENT.getItems().clear();
@@ -166,7 +242,7 @@ public class MainController implements Initializable {
         });
     }
 
-    public void refreshConnectionState(String text) {
+    protected void refreshConnectionState(String text) {
         updateUI(() -> {
             try {
                 isOnline.setText(text);

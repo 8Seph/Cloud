@@ -23,7 +23,7 @@
        </Menu>
        <Menu mnemonicParsing="false" text="Edit">
          <items>
-           <MenuItem mnemonicParsing="false" onAction="#deleteBtn" text="Delete" />
+           <MenuItem mnemonicParsing="false" onAction="#delete" text="Delete" />
          </items>
        </Menu>
        <Menu mnemonicParsing="false" text="Help">
@@ -69,7 +69,7 @@
                      <Insets right="5.0" />
                   </HBox.margin>
                </Label>
-               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" minWidth="80.0" mnemonicParsing="false" onAction="#deleteBtn" prefWidth="80.0" style="-fx-background-radius: 0; -fx-background-color: #ff5257;" text="Delete" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
+               <Button alignment="TOP_CENTER" contentDisplay="CENTER" defaultButton="true" focusTraversable="false" graphicTextGap="5.0" minWidth="80.0" mnemonicParsing="false" onAction="#delete" prefWidth="80.0" style="-fx-background-radius: 0; -fx-background-color: #ff5257;" text="Delete" textAlignment="CENTER" textFill="WHITE" textOverrun="CLIP">
                   <font>
                      <Font name="System Bold" size="14.0" />
                   </font>
@@ -124,7 +124,7 @@
                            <Insets bottom="10.0" top="10.0" />
                         </VBox.margin>
                      </Label>
-                      <ListView fx:id="filesList_CLIENT" maxWidth="-Infinity" minWidth="-Infinity" style="-fx-background-radius: 0; -fx-border-radius: 0;" VBox.vgrow="ALWAYS">
+                      <ListView fx:id="filesList_CLIENT" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" VBox.vgrow="ALWAYS">
                         <VBox.margin>
                            <Insets />
                         </VBox.margin>

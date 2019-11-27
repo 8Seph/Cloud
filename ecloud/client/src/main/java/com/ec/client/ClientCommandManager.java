@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ClientCommandManager {
 
-    public static void sendFile(Path path, Channel ctx, ChannelFutureListener finishListener) throws IOException, InterruptedException {
+    public static void sendFile(Path path, Channel ctx) throws IOException, InterruptedException {
 
         FileRegion region = new DefaultFileRegion(new FileInputStream(path.toFile()).getChannel(), 0, Files.size(path));
         byte[] fileName = path.getFileName().toString().getBytes();
@@ -39,10 +39,11 @@ public class ClientCommandManager {
         ctx.write(byteBuf);
 
         ctx.flush();
-        ChannelFuture transferOperationFuture = ctx.writeAndFlush(region);
-        if (finishListener != null) {
-            transferOperationFuture.addListener(finishListener);
-        }
+        ctx.writeAndFlush(region);
+//        ChannelFuture transferOperationFuture = ctx.writeAndFlush(region);
+//        if (finishListener != null) {
+//            transferOperationFuture.addListener(finishListener);
+//        }
 
     }
 
@@ -94,7 +95,7 @@ public class ClientCommandManager {
 
     public static void getServerFilesList(Channel ctx) {
         ByteBuf buf = ByteBufAllocator.DEFAULT.directBuffer(1);
-        buf.writeByte((byte) 25);
+        buf.writeByte((byte) 125);
         ctx.writeAndFlush(buf);
     }
 
