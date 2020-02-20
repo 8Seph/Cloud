@@ -20,6 +20,8 @@ public class MainHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 
+
+
         try {
             // Обработка запросов
             if (msg instanceof FileRequest) {

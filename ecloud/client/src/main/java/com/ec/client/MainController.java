@@ -103,7 +103,7 @@ public class MainController implements Initializable {
                 });
                 e.printStackTrace();
             } finally {
-                Network.stop();
+             //   Network.stop();
             }
         });
         t.setDaemon(true);

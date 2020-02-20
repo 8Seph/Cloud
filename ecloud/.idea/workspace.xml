@@ -447,7 +447,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MainClient">
+  <component name="RunManager" selected="Application.Server">
     <configuration name="MainClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -478,8 +478,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MainClient" />
         <item itemvalue="Application.Server" />
+        <item itemvalue="Application.MainClient" />
       </list>
     </recent_temporary>
   </component>
