@@ -16,6 +16,8 @@ public class Server {
     protected static final String FILES_PATH = "storage/server/";
 
     protected void run() throws Exception {
+        
+        // Проверка наличия дириктории для файлов на сервере
         if (!Files.exists(Paths.get(FILES_PATH))) {
             System.out.println("Создание директории на сервере");
             Files.createDirectories(Paths.get(FILES_PATH));
