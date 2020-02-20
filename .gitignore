@@ -1,0 +1,4 @@
+.idea
+storage
+client/target/**
+server/target/**
