@@ -6,7 +6,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
 
-    private ServerCommandManager requests = new ServerCommandManager();
+    private ServerCommandManager serverCommandManager = new ServerCommandManager();
     private boolean downFlag = false; // флаг для обозначения загрузки файла
 
     public void setDownFlag(boolean downFlag) {
@@ -24,27 +24,27 @@ public class ServerCommandHandler extends ChannelInboundHandlerAdapter {
             // Инициализация загрузки файла на сервер
             if (command == 66) {
                 downFlag = true;
-                requests.downloadFile(ctx, byteBuf, this);
+                serverCommandManager.downloadFile(ctx, byteBuf, this);
             }
 
             // Удаление файла на сервере
             if (command == 33) {
-                requests.deleteFile(ctx, byteBuf);
+                serverCommandManager.deleteFile(ctx, byteBuf);
             }
 
             // Отправка файл листа клиенту
             if (command == 25) {
-                requests.sendFilesList(ctx);
+                serverCommandManager.sendFilesList(ctx);
             }
 
             // Отправка файла клиенту
             if (command == 99) {
-                requests.sendFile(ctx, byteBuf);
+                serverCommandManager.sendFile(ctx, byteBuf);
             }
 
         } else {
             // Продолжение загрузки файла
-            requests.downloadFile(ctx, byteBuf, this);
+            serverCommandManager.downloadFile(ctx, byteBuf, this);
         }
     }
 
