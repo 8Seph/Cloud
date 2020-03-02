@@ -140,7 +140,7 @@ public class MainController implements Initializable {
         ClientCommandManager.getServerFilesList(network.getCurrentChannel());
     }
 
-    // todo этот метод не должен вызываться из ClientCommandManager.updateServerFileList()
+    // todo Вызывается из ClientRequests.updateServerFileList()
     public void refreshServerFilesList(List<String> filesList) {
         updateUI(() -> {
             try {

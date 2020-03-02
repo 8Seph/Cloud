@@ -9,11 +9,16 @@ import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 
 public class Server {
     public static final String FILES_PATH = "D:/storage/server/";
 
     public void run() throws Exception {
+        checkExistDirectories();
 
         EventLoopGroup mainGroup = new NioEventLoopGroup(); // Пул потоков для обработки подключений клиентов
         EventLoopGroup workerGroup = new NioEventLoopGroup();  // Пул потоков для обработки сетевых сообщений
@@ -39,5 +44,14 @@ public class Server {
         }
     }
 
+    private void checkExistDirectories() {
+        if (!Files.exists(Paths.get(FILES_PATH))) {
+            try {
+                Files.createDirectories(Paths.get(FILES_PATH));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }
