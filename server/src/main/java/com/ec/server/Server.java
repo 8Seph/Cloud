@@ -8,8 +8,7 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 public class Server {
     public static final String FILES_PATH = "D:/storage/server/";
@@ -18,7 +17,6 @@ public class Server {
 
         EventLoopGroup mainGroup = new NioEventLoopGroup(); // Пул потоков для обработки подключений клиентов
         EventLoopGroup workerGroup = new NioEventLoopGroup();  // Пул потоков для обработки сетевых сообщений
-
         try {
             ServerBootstrap b = new ServerBootstrap();  // Создание настроек сервера
             b.group(mainGroup, workerGroup); // указание пулов потоков для работы сервера
@@ -40,5 +38,6 @@ public class Server {
             workerGroup.shutdownGracefully();
         }
     }
+
 
 }
