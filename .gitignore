@@ -1,4 +1,4 @@
-.idea
-storage
-client/target/**
-server/target/**
+.idea/
+client/target/
+server/target/
+
