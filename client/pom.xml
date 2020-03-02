@@ -11,6 +11,7 @@
     <artifactId>client</artifactId>
 
     <properties>
+	
         <project.build.directory>asd</project.build.directory>
         <project.basedir></project.basedir>
         <project.version></project.version>
